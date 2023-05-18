@@ -1,5 +1,6 @@
-import React from "react";
-import { colors } from "../../global";
+import React, { useEffect } from "react";
+import { colors, getBgColors } from "../../global";
+import styled from "styled-components";
 
 export interface Step {
   name: string;
@@ -19,21 +20,18 @@ export function Stepper({
   disabledColor = colors.disabled,
   animated = true,
 }: StepperProps) {
-  const activeColorText = `text-${activeColor}`;
-  const activeColorBg = `bg-${activeColor}`;
-  const disabledColorText = `text-${disabledColor}`;
-  const disabledColorBg = `bg-${disabledColor}`;
+  const StepIndexDiv = styled.div`
+    background-color: ${activeColor};
+  `;
   return (
     <div>
       {steps.map((step) => (
         <div>
-          <div
-            className={`${
-              step.active ? activeColorBg : disabledColorBg
-            } rounded-full`}
-          >
-            1
-          </div>
+          <StepIndexDiv className="w-8 relative h-8 text-xs rounded-full">
+            <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+              1
+            </span>
+          </StepIndexDiv>
           <p>{step.name}</p>
         </div>
       ))}
