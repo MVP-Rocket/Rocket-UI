@@ -2,6 +2,7 @@ import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
+import tailwind from "rollup-plugin-tailwindcss";
 import { terser } from "rollup-plugin-terser";
 
 export default [
@@ -30,6 +31,10 @@ export default [
       external(),
       resolve(),
       terser(),
+      tailwind({
+        input: "./tailwindcss.css", // required
+        purge: false,
+      }),
     ],
   },
 ];
