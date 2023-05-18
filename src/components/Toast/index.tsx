@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  BsCheckCircle,
-  BsExclamationCircle,
-  BsInfoCircle,
+  BsCheckCircleFill,
+  BsExclamationCircleFill,
+  BsInfoCircleFill,
 } from "react-icons/bs";
 
 interface toastProps {
@@ -16,17 +16,17 @@ export default function Toast({ type, theme, position, message }: toastProps) {
   // Default toast
   let borderColor = "border-green-500";
   let backgroundColor = "bg-white";
-  let icon = <BsCheckCircle size={22} color="#22c55e" />;
+  let icon = <BsCheckCircleFill size={22} color="#22c55e" />;
   let positionOnScreen = "top-4 right-4";
 
   // Type
   if (type === "error") {
     borderColor = "border-red-500";
-    icon = <BsExclamationCircle size={22} color="#ef4444" />;
+    icon = <BsExclamationCircleFill size={22} color="#ef4444" />;
   }
   if (type === "info") {
     borderColor = "border-blue-500";
-    icon = <BsInfoCircle size={22} color="#3b82f6" />;
+    icon = <BsInfoCircleFill size={22} color="#3b82f6" />;
   }
 
   // Theme
@@ -44,7 +44,7 @@ export default function Toast({ type, theme, position, message }: toastProps) {
       <div className="flex h-full items-center px-4 pb-0.5">
         <div>{icon}</div>
         <p className={`${theme === "dark" && "text-white"} ml-2 mb-0.5`}>
-          {message ?? "Contenu ajouté avec succès!"}
+          {message ?? "🚀 Its working!"}
         </p>
       </div>
     </div>
