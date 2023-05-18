@@ -44,7 +44,7 @@ export default function Toast({ type, theme, position, message }: toastProps) {
       <div className="flex h-full items-center px-4 pb-0.5">
         <div>{icon}</div>
         <p className={`${theme === "dark" && "text-white"} ml-2 mb-0.5`}>
-          Contenu ajouté avec succès!
+          {message ?? "Contenu ajouté avec succès!"}
         </p>
       </div>
     </div>
