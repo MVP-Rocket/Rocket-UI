@@ -3,6 +3,7 @@ import {
   BsCheckCircleFill,
   BsExclamationCircleFill,
   BsInfoCircleFill,
+  BsXLg,
 } from "react-icons/bs";
 
 interface toastProps {
@@ -49,12 +50,12 @@ export default function Toast({
   if (position === "bottom-left") positionOnScreen = "bottom-4 left-4";
   if (position === "bottom-right") positionOnScreen = "bottom-4 right-4";
 
-  // Duration
-  useEffect(() => {
-    setTimeout(() => {
-      setIsDisplayed(false);
-    }, duration ?? 3000);
-  }, []);
+  // // Duration
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsDisplayed(false);
+  //   }, duration ?? 2500);
+  // }, []);
 
   // Animation
   if (animation === "slide-up") animate = "animate-toastSlideUp";
@@ -63,13 +64,22 @@ export default function Toast({
     isDisplayed && (
       <div
         className={`${borderColor} ${backgroundColor} ${positionOnScreen} ${animate}
-        absolute min-w-[240px] w-fit h-16 rounded-md border-t-4 shadow-md`}
+        absolute min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md`}
       >
-        <div className="flex h-full items-center px-4 pb-0.5">
-          <div>{icon}</div>
-          <p className={`${theme === "dark" && "text-white"} ml-2 mb-0.5`}>
+        <div className="flex min-h-[60px] items-center px-4 pb-0.5">
+          {icon}
+          <p
+            className={`${
+              theme === "dark" && "text-white"
+            } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
+          >
             {message ?? "🚀 Its working!"}
           </p>
+          <BsXLg
+            onClick={() => setIsDisplayed(false)}
+            size={14}
+            className="absolute z-20 top-3 right-3 cursor-pointer"
+          />
         </div>
       </div>
     )
