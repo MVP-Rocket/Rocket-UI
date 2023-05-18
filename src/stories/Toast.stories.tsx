@@ -16,6 +16,10 @@ export default {
       options: ["top-left", "top-right", "bottom-left", "bottom-right"],
       control: "radio",
     },
+    animation: {
+      options: ["slide-up", "zoom-in"],
+      control: "radio",
+    },
   },
 };
 
@@ -64,4 +68,14 @@ BottomLeft.args = {
 export const BottomRight = Template.bind({});
 BottomRight.args = {
   position: "bottom-right",
+};
+
+export const SlideUp = Template.bind({});
+SlideUp.args = {
+  animation: "slide-up",
+};
+
+export const ZoomIn = Template.bind({});
+ZoomIn.args = {
+  animation: "zoom-in",
 };
