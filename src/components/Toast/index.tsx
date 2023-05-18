@@ -50,12 +50,12 @@ export default function Toast({
   if (position === "bottom-left") positionOnScreen = "bottom-4 left-4";
   if (position === "bottom-right") positionOnScreen = "bottom-4 right-4";
 
-  // // Duration
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsDisplayed(false);
-  //   }, duration ?? 2500);
-  // }, []);
+  // Duration
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDisplayed(false);
+    }, duration ?? 2500);
+  }, []);
 
   // Animation
   if (animation === "slide-up") animate = "animate-toastSlideUp";
