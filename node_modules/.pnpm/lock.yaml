@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  react-docgen-typescript:
+    specifier: ^2.2.2
+    version: 2.2.2(typescript@5.0.4)
+
 devDependencies:
   '@babel/preset-env':
     specifier: ^7.21.5
@@ -7662,7 +7667,6 @@ packages:
       typescript: '>= 4.3.x'
     dependencies:
       typescript: 5.0.4
-    dev: true
 
   /react-docgen@5.4.3:
     resolution: {integrity: sha512-xlLJyOlnfr8lLEEeaDZ+X2J/KJoe6Nr9AzxnkdQWush5hz2ZSu66w6iLMOScMmxoSHWpWMn+k3v5ZiyCfcWsOA==}
@@ -8773,7 +8777,6 @@ packages:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
