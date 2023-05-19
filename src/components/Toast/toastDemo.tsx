@@ -13,7 +13,6 @@ export default function Toast({
   theme,
   duration,
   animation,
-  position,
 }: toastType) {
   const [isDisplayed, setIsDisplayed] = useState(true);
 
@@ -40,39 +39,32 @@ export default function Toast({
   useEffect(() => {
     setTimeout(() => {
       setIsDisplayed(false);
-    }, duration);
+    }, duration ?? 3000);
   }, []);
 
   // Animation
   if (animation === "slide-up") animate = "animate-toastSlideUp";
 
-  // Justifying
-  let justifying = "justify-end";
-  if (position === "top-left" || position === "bottom-left")
-    justifying = "justify-start";
-
   return (
     isDisplayed && (
-      <div className={`flex ${justifying}`}>
-        <div
-          className={`${borderColor} ${backgroundColor} ${animate}
-        min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3`}
-        >
-          <div className="flex min-h-[60px] items-center px-4 pb-0.5">
-            {icon}
-            <p
-              className={`${
-                theme === "dark" && "text-white"
-              } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
-            >
-              {message}
-            </p>
-            <BsXLg
-              onClick={() => setIsDisplayed(false)}
-              size={14}
-              className="absolute z-20 top-3 right-3 cursor-pointer"
-            />
-          </div>
+      <div
+        className={`${borderColor} ${backgroundColor} ${animate}
+        absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3`}
+      >
+        <div className="flex min-h-[60px] items-center px-4 pb-0.5">
+          {icon}
+          <p
+            className={`${
+              theme === "dark" && "text-white"
+            } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
+          >
+            {message ?? "🚀 Its working!"}
+          </p>
+          <BsXLg
+            onClick={() => setIsDisplayed(false)}
+            size={14}
+            className="absolute z-20 top-3 right-3 cursor-pointer"
+          />
         </div>
       </div>
     )

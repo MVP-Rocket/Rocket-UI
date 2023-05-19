@@ -1,5 +1,5 @@
 import React from "react";
-import Toast from "../components/Toast/toast";
+import Toast from "../components/Toast/toastDemo";
 
 export default {
   component: Toast,
@@ -10,10 +10,6 @@ export default {
     },
     theme: {
       options: ["light", "dark"],
-      control: "radio",
-    },
-    position: {
-      options: ["top-left", "top-right", "bottom-left", "bottom-right"],
       control: "radio",
     },
     animation: {
@@ -48,26 +44,6 @@ Light.args = {
 export const Dark = Template.bind({});
 Dark.args = {
   theme: "dark",
-};
-
-export const TopLeft = Template.bind({});
-TopLeft.args = {
-  position: "top-left",
-};
-
-export const TopRight = Template.bind({});
-TopRight.args = {
-  position: "top-right",
-};
-
-export const BottomLeft = Template.bind({});
-BottomLeft.args = {
-  position: "bottom-left",
-};
-
-export const BottomRight = Template.bind({});
-BottomRight.args = {
-  position: "bottom-right",
 };
 
 export const SlideUp = Template.bind({});
