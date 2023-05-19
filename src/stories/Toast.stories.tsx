@@ -1,8 +1,8 @@
 import React from "react";
-import Toast from "../components/Toast/toastDemo";
+import ToastCardDemo from "../components/Toast/cards/toastCardDemo";
 
 export default {
-  component: Toast,
+  component: ToastCardDemo,
   argTypes: {
     type: {
       options: ["success", "error", "info"],
@@ -19,7 +19,7 @@ export default {
   },
 };
 
-const Template = (args: any) => <Toast {...args} />;
+const Template = (args: any) => <ToastCardDemo {...args} />;
 
 export const Success = Template.bind({});
 Success.args = {

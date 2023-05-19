@@ -5,9 +5,9 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-import { toastType } from "./toastType";
+import { toastType } from "../toastType";
 
-export default function Toast({
+export default function ToastCard({
   message,
   type,
   theme,
