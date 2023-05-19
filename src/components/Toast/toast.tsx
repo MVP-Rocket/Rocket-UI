@@ -5,15 +5,7 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-
-interface toastProps {
-  type?: string;
-  theme?: string;
-  position?: string;
-  duration?: number;
-  message?: string;
-  animation?: string;
-}
+import { toastType } from "./toastType";
 
 export default function Toast({
   message,
@@ -22,7 +14,7 @@ export default function Toast({
   position,
   duration,
   animation,
-}: toastProps) {
+}: toastType) {
   const [isDisplayed, setIsDisplayed] = useState(true);
 
   // Default toast
