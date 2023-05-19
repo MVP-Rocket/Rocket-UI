@@ -18,11 +18,16 @@ export default function ToastCardDemo({
   const [isDisplayed, setIsDisplayed] = useState(true);
   const [isAnimationOn, setIsAnimationOn] = useState(false);
 
-  // Start animation after page load
+  const [isClosed, setIsClosed] = useState(false);
+
+  // Start and end of transition
   useEffect(() => {
     setTimeout(() => {
       setIsAnimationOn(true);
     }, 100);
+    setTimeout(() => {
+      setIsAnimationOn(false);
+    }, 3000 - 350);
   }, []);
 
   // Default toast
@@ -61,7 +66,7 @@ export default function ToastCardDemo({
   return (
     isDisplayed && (
       <div
-        className={`${borderColor} ${backgroundColor} ${
+        className={`${borderColor} ${backgroundColor} ${isClosed && "hidden"} ${
           isAnimationOn ? transitionEnd : transitionStart
         }
         absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
@@ -76,7 +81,7 @@ export default function ToastCardDemo({
             {message ?? "🚀 Its working!"}
           </p>
           <BsXLg
-            onClick={() => setIsDisplayed(false)}
+            onClick={() => setIsClosed(true)}
             size={14}
             className="absolute z-20 top-3 right-3 cursor-pointer"
           />

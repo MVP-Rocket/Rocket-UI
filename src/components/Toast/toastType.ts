@@ -4,6 +4,6 @@ export interface toastType {
   type?: string;
   theme?: string;
   animation?: string;
-  duration?: string;
+  duration?: number;
   position?: string;
 }

@@ -13,9 +13,7 @@ export default function ToastContainer({ position }: toastContainerProps) {
   // Demo
   useEffect(() => {
     newToast("Content added successfully!", "success", "light", 3000, "slide");
-    setTimeout(() => {
-      newToast("An error has occured.", "error", "light", 3200, "zoom-in");
-    }, 300);
+    newToast("An error has occured.", "error", "light", 3500, "zoom-in");
   }, []);
   //
 
@@ -27,12 +25,18 @@ export default function ToastContainer({ position }: toastContainerProps) {
 
   return (
     toasts.length > 0 && (
-      <div className={`absolute ${positionOnScreen} overflow-hidden`}>
+      <div
+        className={`absolute z-50 ${positionOnScreen} overflow-hidden`}
+        id="toastContainer"
+      >
         {toasts.map((toast: toastType) => {
-          const { id, message, type, theme, animation } = toast;
+          const { id, message, type, theme, animation, duration } = toast;
           return (
-            <ToastCard {...{ id, message, type, theme, animation, position }} />
+            <ToastCard
+              {...{ id, message, type, theme, animation, duration, position }}
+            />
           );
+          //TODO: const toastContainerRef = useRef(null); toastContainerRef.current.appendChild();
         })}
       </div>
     )

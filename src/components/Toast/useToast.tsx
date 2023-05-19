@@ -32,10 +32,5 @@ export default function useToast() {
     }
   }, [toasts]);
 
-  // Closing
-  function closeToast(toastId: string) {
-    setToasts(toasts.filter((t: toastType) => t.id !== toastId));
-  }
-
-  return { toasts, newToast, closeToast };
+  return { toasts, newToast };
 }

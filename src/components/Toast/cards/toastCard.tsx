@@ -14,16 +14,20 @@ export default function ToastCard({
   type,
   theme,
   animation,
+  duration,
   position,
 }: toastType) {
-  const { closeToast } = useToast();
   const [isDisplayed, setIsDisplayed] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
-  // Start animation after component load
+  // Start and end of transition
   useEffect(() => {
     setTimeout(() => {
       setIsDisplayed(true);
     }, 100);
+    setTimeout(() => {
+      setIsDisplayed(false);
+    }, (duration ?? 3000) - 350);
   }, []);
 
   // Default toast
@@ -68,8 +72,8 @@ export default function ToastCard({
     <div className={`flex ${justifying}`}>
       <div
         className={`${borderColor} ${backgroundColor} ${margin} ${
-          isDisplayed ? transitionEnd : transitionStart
-        }
+          isClosed && "hidden"
+        } ${isDisplayed ? transitionEnd : transitionStart}
         min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
@@ -82,7 +86,7 @@ export default function ToastCard({
             {message}
           </p>
           <BsXLg
-            onClick={() => closeToast(id)}
+            onClick={() => setIsClosed(true)}
             size={14}
             className="absolute z-20 top-3 right-3 cursor-pointer"
           />
