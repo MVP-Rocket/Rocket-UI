@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BsCheckCircleFill,
   BsExclamationCircleFill,
@@ -17,12 +17,23 @@ export default function ToastCard({
   position,
 }: toastType) {
   const { closeToast } = useToast();
+  const [isDisplayed, setIsDisplayed] = useState(false);
+
+  // Start animation after component load
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDisplayed(true);
+    }, 100);
+  }, []);
 
   // Default toast
   let borderColor = "border-green-500";
   let backgroundColor = "bg-white";
   let icon = <BsCheckCircleFill size={22} color="#22c55e" />;
-  let animate = "animate-toastZoomIn";
+  let transitionStart = "translate-x-[110%] opacity-0";
+  let transitionEnd = "translate-x-0 opacity-100";
+  let justifying = "justify-end";
+  let margin = "mr-4";
 
   // Type
   if (type === "error") {
@@ -38,18 +49,28 @@ export default function ToastCard({
   if (theme === "dark") backgroundColor = "bg-gray-900";
 
   // Animation
-  if (animation === "slide-up") animate = "animate-toastSlideUp";
+  if (animation === "zoom-in") {
+    transitionStart = "scale-50 opacity-0";
+    transitionEnd = "scale-100 opacity-100";
+  }
 
-  // Justifying
-  let justifying = "justify-end";
-  if (position === "top-left" || position === "bottom-left")
+  // Position
+  if (position === "top-left" || position === "bottom-left") {
     justifying = "justify-start";
+    margin = "ml-4";
+    if (!animation || animation === "slide") {
+      transitionStart = "-translate-x-[110%] opacity-0";
+      transitionEnd = "-translate-x-0 opacity-100";
+    }
+  }
 
   return (
     <div className={`flex ${justifying}`}>
       <div
-        className={`${borderColor} ${backgroundColor} ${animate}
-        min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3`}
+        className={`${borderColor} ${backgroundColor} ${margin} ${
+          isDisplayed ? transitionEnd : transitionStart
+        }
+        min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
           {icon}

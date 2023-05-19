@@ -16,12 +16,21 @@ export default function ToastCardDemo({
   animation,
 }: toastType) {
   const [isDisplayed, setIsDisplayed] = useState(true);
+  const [isAnimationOn, setIsAnimationOn] = useState(false);
+
+  // Start animation after page load
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAnimationOn(true);
+    }, 100);
+  }, []);
 
   // Default toast
   let borderColor = "border-green-500";
   let backgroundColor = "bg-white";
   let icon = <BsCheckCircleFill size={22} color="#22c55e" />;
-  let animate = "animate-toastZoomIn";
+  let transitionStart = "translate-x-[110%] opacity-0";
+  let transitionEnd = "translate-x-0 opacity-100";
 
   // Type
   if (type === "error") {
@@ -44,13 +53,18 @@ export default function ToastCardDemo({
   }, []);
 
   // Animation
-  if (animation === "slide-up") animate = "animate-toastSlideUp";
+  if (animation === "zoom-in") {
+    transitionStart = "scale-50 opacity-0";
+    transitionEnd = "scale-100 opacity-100";
+  }
 
   return (
     isDisplayed && (
       <div
-        className={`${borderColor} ${backgroundColor} ${animate}
-        absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3`}
+        className={`${borderColor} ${backgroundColor} ${
+          isAnimationOn ? transitionEnd : transitionStart
+        }
+        absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
           {icon}

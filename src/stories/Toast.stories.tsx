@@ -47,9 +47,9 @@ Dark.args = {
   theme: "dark",
 };
 
-export const SlideUp = Template.bind({});
-SlideUp.args = {
-  animation: "slide-up",
+export const Slide = Template.bind({});
+Slide.args = {
+  animation: "slide",
 };
 
 export const ZoomIn = Template.bind({});
