@@ -8,6 +8,7 @@ import {
 import { toastType } from "../toastType";
 
 export default function ToastCardDemo({
+  id,
   message,
   type,
   theme,
@@ -39,7 +40,7 @@ export default function ToastCardDemo({
   useEffect(() => {
     setTimeout(() => {
       setIsDisplayed(false);
-    }, duration ?? 3000);
+    }, 3000);
   }, []);
 
   // Animation

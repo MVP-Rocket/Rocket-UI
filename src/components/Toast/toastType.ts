@@ -1,8 +1,9 @@
 export interface toastType {
+  id: string;
+  message?: string;
   type?: string;
   theme?: string;
-  duration?: number;
-  message?: string;
   animation?: string;
+  duration?: string;
   position?: string;
 }

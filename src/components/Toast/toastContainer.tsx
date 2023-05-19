@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useToast from "./useToast";
-import { toastType } from "./toastType";
 import ToastCard from "./cards/toastCard";
+import { toastType } from "./toastType";
 
 interface toastContainerProps {
   position: string;
@@ -13,9 +13,15 @@ export default function ToastContainer({ position }: toastContainerProps) {
 
   // Demo
   useEffect(() => {
-    newToast("Content added successfully!", "success", "light", 3000, "zoomIn");
+    newToast(
+      "Content added successfully!",
+      "success",
+      "light",
+      3000,
+      "zoom-in"
+    );
     setTimeout(() => {
-      newToast("An error has occured.", "error", "light", 3000, "slideUp");
+      newToast("An error has occured.", "error", "light", 3200, "zoom-in");
     }, 300);
   }, []);
   //
@@ -23,11 +29,9 @@ export default function ToastContainer({ position }: toastContainerProps) {
   useEffect(() => {
     setToastMapping(
       toasts.map((toast: toastType) => {
-        const { message, type, theme, duration, animation } = toast;
+        const { id, message, type, theme, animation } = toast;
         return (
-          <ToastCard
-            {...{ message, type, theme, duration, animation, position }}
-          />
+          <ToastCard {...{ id, message, type, theme, animation, position }} />
         );
       })
     );
@@ -39,5 +43,9 @@ export default function ToastContainer({ position }: toastContainerProps) {
   if (position === "bottom-left") positionOnScreen = "bottom-4 left-4";
   if (position === "bottom-right") positionOnScreen = "bottom-4 right-4";
 
-  return <div className={`absolute ${positionOnScreen}`}>{toastMapping}</div>;
+  return (
+    toasts.length > 0 && (
+      <div className={`absolute ${positionOnScreen}`}>{toastMapping}</div>
+    )
+  );
 }

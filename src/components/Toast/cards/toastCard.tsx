@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BsCheckCircleFill,
   BsExclamationCircleFill,
@@ -6,16 +6,17 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import { toastType } from "../toastType";
+import useToast from "../useToast";
 
 export default function ToastCard({
+  id,
   message,
   type,
   theme,
-  duration,
   animation,
   position,
 }: toastType) {
-  const [isDisplayed, setIsDisplayed] = useState(true);
+  const { closeToast } = useToast();
 
   // Default toast
   let borderColor = "border-green-500";
@@ -36,13 +37,6 @@ export default function ToastCard({
   // Theme
   if (theme === "dark") backgroundColor = "bg-gray-900";
 
-  // Duration
-  useEffect(() => {
-    setTimeout(() => {
-      setIsDisplayed(false);
-    }, duration);
-  }, []);
-
   // Animation
   if (animation === "slide-up") animate = "animate-toastSlideUp";
 
@@ -52,29 +46,27 @@ export default function ToastCard({
     justifying = "justify-start";
 
   return (
-    isDisplayed && (
-      <div className={`flex ${justifying}`}>
-        <div
-          className={`${borderColor} ${backgroundColor} ${animate}
+    <div className={`flex ${justifying}`}>
+      <div
+        className={`${borderColor} ${backgroundColor} ${animate}
         min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3`}
-        >
-          <div className="flex min-h-[60px] items-center px-4 pb-0.5">
-            {icon}
-            <p
-              className={`${
-                theme === "dark" && "text-white"
-              } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
-            >
-              {message}
-            </p>
-            <BsXLg
-              onClick={() => setIsDisplayed(false)}
-              size={14}
-              className="absolute z-20 top-3 right-3 cursor-pointer"
-            />
-          </div>
+      >
+        <div className="flex min-h-[60px] items-center px-4 pb-0.5">
+          {icon}
+          <p
+            className={`${
+              theme === "dark" && "text-white"
+            } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
+          >
+            {message}
+          </p>
+          <BsXLg
+            onClick={() => closeToast(id)}
+            size={14}
+            className="absolute z-20 top-3 right-3 cursor-pointer"
+          />
         </div>
       </div>
-    )
+    </div>
   );
 }
