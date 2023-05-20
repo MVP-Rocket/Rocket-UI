@@ -74,7 +74,7 @@ export default function ToastCardDemo({
         className={`${borderColor} ${backgroundColor} ${isClosed && "hidden"} ${
           isAnimationOn ? transitionEnd : transitionStart
         }
-        absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
+        absolute top-4 right-4 min-w-[300px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
           {icon}
