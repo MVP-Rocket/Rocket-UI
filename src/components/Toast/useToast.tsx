@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { uuid } from "uuidv4";
 import { toastType } from "./types/toastType";
 import ToastCard from "./toastCard";
 import { toastOptionsType } from "./types/toastOptionsType";
@@ -13,7 +12,6 @@ export default function useToast() {
 
   function newToast(message?: string, options?: toastOptionsType): void {
     const toastToAdd = {
-      id: uuid(),
       message: message ?? "🚀 Default Toast!",
       type: options?.type ?? "",
       theme: options?.theme ?? "",
@@ -33,11 +31,10 @@ export default function useToast() {
       toasts.length > 0 && (
         <div className={`${positionOnScreen} absolute z-50 overflow-hidden`}>
           {toasts.map((toast: toastType) => {
-            const { id, message, type, theme, animation, duration } = toast;
+            const { message, type, theme, animation, duration } = toast;
             return (
               <ToastCard
                 {...{
-                  id,
                   message,
                   type,
                   theme,

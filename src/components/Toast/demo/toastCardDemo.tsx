@@ -8,7 +8,6 @@ import {
 import { toastType } from "../../Toast/types/toastType";
 
 export default function ToastCardDemo({
-  id,
   message,
   type,
   theme,
@@ -20,16 +19,14 @@ export default function ToastCardDemo({
 
   const [isClosed, setIsClosed] = useState(false);
 
+  // Transitions and autoclosing
   useEffect(() => {
-    // start transition
     setTimeout(() => {
       setIsAnimationOn(true);
     }, 100);
-    // end transition
     setTimeout(() => {
       setIsAnimationOn(false);
     }, 3000 - 350);
-    // closing toast
     setTimeout(() => {
       setIsClosed(true);
     }, 3000);
