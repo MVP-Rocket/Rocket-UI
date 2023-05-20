@@ -53,7 +53,7 @@ export default function ToastCardDemo({
   }
 
   // Theme
-  if (theme === "dark") backgroundColor = "bg-gray-900";
+  if (theme === "dark") backgroundColor = "bg-gray-800";
 
   // Duration
   useEffect(() => {
@@ -88,6 +88,7 @@ export default function ToastCardDemo({
           <BsXLg
             onClick={() => setIsClosed(true)}
             size={14}
+            color={`${theme === "dark" && "white"}`}
             className="absolute z-20 top-3 right-3 cursor-pointer"
           />
         </div>
