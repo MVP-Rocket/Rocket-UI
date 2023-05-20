@@ -63,7 +63,7 @@ export default function ToastCardDemo({
   }, []);
 
   // Animation
-  if (animation === "zoom-in") {
+  if (animation === "zoom") {
     transitionStart = "scale-50 opacity-0";
     transitionEnd = "scale-100 opacity-100";
   }

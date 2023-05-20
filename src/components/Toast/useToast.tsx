@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { uuid } from "uuidv4";
-import { toastType } from "./toastType";
+import { toastType } from "./types/toastType";
 import ToastCard from "./cards/toastCard";
+import { toastOptionsType } from "./types/toastOptionsType";
 
 interface toastContainerProps {
   position: string;
@@ -12,19 +13,24 @@ export default function useToast() {
 
   // Demo
   useEffect(() => {
-    newToast("Content added successfully!", "success", "light", 3000, "slide");
-    newToast("An error has occured.", "error", "light", 3500, "zoom-in");
+    newToast("Default Toast!");
+    newToast("Custom Toast!", {
+      type: "info",
+      theme: "dark",
+      duration: 3700,
+      animation: "zoom",
+    });
   }, []);
   //
 
-  function newToast(message, type, theme, duration, animation) {
+  function newToast(message, options?: toastOptionsType): void {
     const toastToAdd = {
       id: uuid(),
       message: message ?? "🚀 Its working!",
-      type: type ?? "",
-      theme: theme ?? "",
-      duration: duration ?? 3000,
-      animation: animation ?? "",
+      type: options?.type ?? "",
+      theme: options?.theme ?? "",
+      duration: options?.duration ?? 3000,
+      animation: options?.animation ?? "",
     };
     setToasts((toasts) => [...toasts, toastToAdd]);
   }

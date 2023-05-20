@@ -5,7 +5,7 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-import { toastType } from "../toastType";
+import { toastType } from "../types/toastType";
 
 export default function ToastCard({
   id,
@@ -57,7 +57,7 @@ export default function ToastCard({
   if (theme === "dark") backgroundColor = "bg-gray-900";
 
   // Animation
-  if (animation === "zoom-in") {
+  if (animation === "zoom") {
     transitionStart = "scale-50 opacity-0";
     transitionEnd = "scale-100 opacity-100";
   }

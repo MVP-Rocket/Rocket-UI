@@ -14,7 +14,7 @@ export default {
       control: "radio",
     },
     animation: {
-      options: ["slide-up", "zoom-in"],
+      options: ["slide", "zoom"],
       control: "radio",
     },
   },
@@ -54,5 +54,5 @@ Slide.args = {
 
 export const ZoomIn = Template.bind({});
 ZoomIn.args = {
-  animation: "zoom-in",
+  animation: "zoom",
 };
