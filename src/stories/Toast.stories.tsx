@@ -1,5 +1,4 @@
 import React from "react";
-import { uuid } from "uuidv4";
 import ToastCardDemo from "../components/Toast/demo/toastCardDemo";
 
 export default {
@@ -20,7 +19,7 @@ export default {
   },
 };
 
-const Template = (args: any) => <ToastCardDemo id={uuid()} {...args} />;
+const Template = (args: any) => <ToastCardDemo {...args} />;
 
 export const Success = Template.bind({});
 Success.args = {
