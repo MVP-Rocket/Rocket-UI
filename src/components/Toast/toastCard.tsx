@@ -5,34 +5,33 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-import { toastType } from "../toastType";
+import { toastType } from "./types/toastType";
 
-export default function ToastCardDemo({
+export default function ToastCard({
   id,
   message,
   type,
   theme,
-  duration,
   animation,
+  duration,
+  position,
 }: toastType) {
-  const [isDisplayed, setIsDisplayed] = useState(true);
-  const [isAnimationOn, setIsAnimationOn] = useState(false);
-
+  const [isDisplayed, setIsDisplayed] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
     // start transition
     setTimeout(() => {
-      setIsAnimationOn(true);
+      setIsDisplayed(true);
     }, 100);
     // end transition
     setTimeout(() => {
-      setIsAnimationOn(false);
-    }, 3000 - 350);
+      setIsDisplayed(false);
+    }, (duration ?? 3000) - 350);
     // closing toast
     setTimeout(() => {
       setIsClosed(true);
-    }, 3000);
+    }, duration ?? 3000);
   }, []);
 
   // Default toast
@@ -41,6 +40,8 @@ export default function ToastCardDemo({
   let icon = <BsCheckCircleFill size={22} color="#22c55e" />;
   let transitionStart = "translate-x-[110%] opacity-0";
   let transitionEnd = "translate-x-0 opacity-100";
+  let justifying = "justify-end";
+  let margin = "mr-4";
 
   // Type
   if (type === "error") {
@@ -55,26 +56,29 @@ export default function ToastCardDemo({
   // Theme
   if (theme === "dark") backgroundColor = "bg-gray-900";
 
-  // Duration
-  useEffect(() => {
-    setTimeout(() => {
-      setIsDisplayed(false);
-    }, 3000);
-  }, []);
-
   // Animation
   if (animation === "zoom") {
     transitionStart = "scale-50 opacity-0";
     transitionEnd = "scale-100 opacity-100";
   }
 
+  // Position
+  if (position === "top-left" || position === "bottom-left") {
+    justifying = "justify-start";
+    margin = "ml-4";
+    if (!animation || animation === "slide") {
+      transitionStart = "-translate-x-[110%] opacity-0";
+      transitionEnd = "-translate-x-0 opacity-100";
+    }
+  }
+
   return (
-    isDisplayed && (
+    <div className={`flex ${justifying}`}>
       <div
-        className={`${borderColor} ${backgroundColor} ${isClosed && "hidden"} ${
-          isAnimationOn ? transitionEnd : transitionStart
-        }
-        absolute top-4 right-4 min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
+        className={`${borderColor} ${backgroundColor} ${margin} ${
+          isClosed && "hidden"
+        } ${isDisplayed ? transitionEnd : transitionStart}
+        min-w-[240px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
           {icon}
@@ -83,7 +87,7 @@ export default function ToastCardDemo({
               theme === "dark" && "text-white"
             } px-3 mb-0.5 break-words md:max-w-[350px] max-w-[240px]`}
           >
-            {message ?? "🚀 Its working!"}
+            {message}
           </p>
           <BsXLg
             onClick={() => setIsClosed(true)}
@@ -92,6 +96,6 @@ export default function ToastCardDemo({
           />
         </div>
       </div>
-    )
+    </div>
   );
 }

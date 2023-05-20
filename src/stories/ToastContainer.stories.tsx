@@ -1,8 +1,8 @@
 import React from "react";
-import ToastContainer from "../components/Toast/toastContainerDemo";
+import ToastContainerDemo from "../components/Toast/demo/toastContainerDemo";
 
 export default {
-  component: ToastContainer,
+  component: ToastContainerDemo,
   argTypes: {
     position: {
       options: ["top-left", "top-right", "bottom-left", "bottom-right"],
@@ -11,7 +11,7 @@ export default {
   },
 };
 
-const Template = (args: any) => <ToastContainer {...args} />;
+const Template = (args: any) => <ToastContainerDemo {...args} />;
 
 export const TopLeft = Template.bind({});
 TopLeft.args = {
