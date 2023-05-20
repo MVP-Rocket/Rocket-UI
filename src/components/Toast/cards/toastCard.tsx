@@ -6,7 +6,6 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import { toastType } from "../toastType";
-import useToast from "../useToast";
 
 export default function ToastCard({
   id,
@@ -20,14 +19,19 @@ export default function ToastCard({
   const [isDisplayed, setIsDisplayed] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
 
-  // Start and end of transition
   useEffect(() => {
+    // start transition
     setTimeout(() => {
       setIsDisplayed(true);
     }, 100);
+    // end transition
     setTimeout(() => {
       setIsDisplayed(false);
     }, (duration ?? 3000) - 350);
+    // closing toast
+    setTimeout(() => {
+      setIsClosed(true);
+    }, duration ?? 3000);
   }, []);
 
   // Default toast
