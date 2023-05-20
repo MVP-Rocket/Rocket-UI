@@ -20,14 +20,19 @@ export default function ToastCardDemo({
 
   const [isClosed, setIsClosed] = useState(false);
 
-  // Start and end of transition
   useEffect(() => {
+    // start transition
     setTimeout(() => {
       setIsAnimationOn(true);
     }, 100);
+    // end transition
     setTimeout(() => {
       setIsAnimationOn(false);
     }, 3000 - 350);
+    // closing toast
+    setTimeout(() => {
+      setIsClosed(true);
+    }, 3000);
   }, []);
 
   // Default toast
