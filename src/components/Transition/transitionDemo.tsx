@@ -11,6 +11,8 @@ export default function TransitionDemo() {
           isShowing={isOpen}
           start="opacity-0 scale-50"
           end="opacity-100 scale-100"
+          duration="220ms"
+          timing="ease-out"
         >
           <Modal.Card height="200px" width="400px">
             <Modal.Title>Rocket UI - Modal</Modal.Title>

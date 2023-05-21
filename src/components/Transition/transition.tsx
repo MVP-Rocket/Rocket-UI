@@ -5,6 +5,8 @@ interface transitionProps {
   isShowing: boolean;
   start: string;
   end: string;
+  duration: string;
+  timing?: string;
 }
 
 export default function Transition({
@@ -12,12 +14,13 @@ export default function Transition({
   isShowing,
   start,
   end,
+  duration,
+  timing,
 }: transitionProps) {
   return (
     <div
-      className={`${
-        isShowing ? end : start
-      } transition-all duration-300 absolute z-1`}
+      className={`${isShowing ? end : start} transition-all absolute z-1`}
+      style={{ transitionDuration: duration, transitionTimingFunction: timing }}
     >
       {children}
     </div>
