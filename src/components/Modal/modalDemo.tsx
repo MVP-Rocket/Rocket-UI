@@ -3,18 +3,19 @@ import Modal from "./modal";
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
   return (
     <>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} width="400px">
-        <Modal.Title>Rocket UI - Modal</Modal.Title>
-        <Modal.Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Modal.Text>
-        <Modal.CloseBtn onClick={() => setIsOpen(false)}>
-          Close modal
-        </Modal.CloseBtn>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Modal.Card height="200px" width="400px">
+          <Modal.Title>Rocket UI - Modal</Modal.Title>
+          <Modal.Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Modal.Text>
+          <Modal.CloseBtn onClick={() => setIsOpen(false)}>
+            Close modal
+          </Modal.CloseBtn>
+        </Modal.Card>
       </Modal>
 
       <button

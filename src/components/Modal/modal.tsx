@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 interface indexProps {
   children?: any;
   isOpen?: boolean;
   onClose?: any;
-  height?: string;
-  width?: string;
   noBackdrop?: boolean;
   backdropOpacity?: number;
 }
@@ -14,22 +12,9 @@ function Modal({
   children,
   isOpen,
   onClose,
-  height,
-  width,
   backdropOpacity,
   noBackdrop,
 }: indexProps): any {
-  // onClose
-  useEffect(() => {
-    !isOpen && onClose();
-  }, [isOpen]);
-
-  // height and width
-  const dynamicStyle = {
-    height: height ?? "fit-content",
-    width: width ?? "fit-content",
-  };
-
   const backdropStyle = {
     background: backdropOpacity
       ? `rgba(0,0,0,${backdropOpacity})`
@@ -37,25 +22,40 @@ function Modal({
   };
 
   return (
-    isOpen && (
-      <div className="absolute z-50">
-        <div className="h-screen w-screen flex justify-center items-center">
-          {!noBackdrop && (
-            <div
-              onClick={(e) => e.target === e.currentTarget && onClose()}
-              className="fixed h-screen w-screen"
-              style={backdropStyle}
-            />
-          )}
+    <div className={`${!isOpen && "invisible"} absolute z-50`}>
+      <div className="h-screen w-screen flex justify-center items-center">
+        {!noBackdrop && (
           <div
-            className="absolute bg-white rounded-2xl shadow-lg px-6 py-4"
-            style={dynamicStyle}
-          >
-            {children}
-          </div>
-        </div>
+            onClick={(e) => e.target === e.currentTarget && onClose()}
+            className="fixed h-screen w-screen"
+            style={backdropStyle}
+          />
+        )}
+        {children}
       </div>
-    )
+    </div>
+  );
+}
+
+interface modalCardProps {
+  children: any;
+  height?: string;
+  width?: string;
+}
+
+function Card({ children, height, width }: modalCardProps) {
+  const dynamicStyle = {
+    height: height ?? "fit-content",
+    width: width ?? "fit-content",
+  };
+
+  return (
+    <div
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg px-6 py-4"
+      style={dynamicStyle}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -80,6 +80,7 @@ function CloseBtn({ onClick, children }) {
   );
 }
 
+Modal.Card = Card;
 Modal.Title = Title;
 Modal.Text = Text;
 Modal.CloseBtn = CloseBtn;
