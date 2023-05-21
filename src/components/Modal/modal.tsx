@@ -26,8 +26,8 @@ function Modal({
 
   // height and width
   const dynamicStyle = {
-    height: height ?? "200px",
-    width: width ?? "400px",
+    height: height ?? "fit-content",
+    width: width ?? "fit-content",
   };
 
   const backdropStyle = {
@@ -48,7 +48,7 @@ function Modal({
             />
           )}
           <div
-            className="absolute bg-white rounded-2xl shadow-lg"
+            className="absolute bg-white rounded-2xl shadow-lg px-6 py-4"
             style={dynamicStyle}
           >
             {children}
