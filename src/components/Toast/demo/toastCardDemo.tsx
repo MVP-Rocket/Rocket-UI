@@ -13,7 +13,7 @@ export default function ToastCardDemo({
   theme,
   duration,
   animation,
-}: toastType) {
+}: toastType): any {
   const [isDisplayed, setIsDisplayed] = useState(true);
   const [isAnimationOn, setIsAnimationOn] = useState(false);
 
