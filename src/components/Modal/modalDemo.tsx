@@ -1,15 +1,12 @@
 import React from "react";
 import Modal from "./modal";
-import ModalContent from "./modalContent";
 
-export default function ModalDemo() {
+export default function ModalDemo({ isOpen, height, width }: any) {
   return (
-    <div>
-      <Modal open={true}>
-        <ModalContent>
-          <h1>omg</h1>
-        </ModalContent>
+    <>
+      <Modal isOpen={isOpen} height={height} width={width}>
+        <h1>omg</h1>
       </Modal>
-    </div>
+    </>
   );
 }

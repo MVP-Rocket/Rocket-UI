@@ -6,5 +6,5 @@ export default {
 };
 
 export const Modal = {
-  render: () => <ModalDemo />,
+  render: () => <ModalDemo isOpen={true} height="500px" width="600px" />,
 };
