@@ -1,10 +1,10 @@
 import React from "react";
-import Select from "../../components/Select/select";
+import SelectDemo from "../../components/Select/demo/selectDemo";
 
 export default {
-  component: Select,
+  component: SelectDemo,
 };
 
 export const Default = {
-  render: () => <Select />,
+  render: () => <SelectDemo />,
 };

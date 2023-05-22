@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { selectType } from "./types/selectType";
+import styled from "styled-components";
 
-const props = ["Wade Cooper", "Arlene Mccoy", "Devon Webb", "Tom Cook"];
-
-export default function Select() {
+export default function Select({ options, color, onChange }: selectType) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [chosenElement, setChosenElement] = useState<any>(props[0]);
+  const [chosenOption, setChosenOption] = useState<any>(options[0]);
   const selectRef = useRef<HTMLDivElement>(null);
 
   // Closing select when clicking outside of it
@@ -21,47 +21,54 @@ export default function Select() {
       setIsOpen(false);
     }
   }
-  //
 
-  const children = props.map((el: any, i: number) => {
-    if (el != chosenElement) {
+  function handleClickOnOption(el: string) {
+    setChosenOption(el);
+    setIsOpen(false);
+    onChange(el);
+  }
+
+  const SelectPropsDiv = styled.div`
+    &:hover {
+      background-color: ${color ? color : "#262626"};
+      color: white;
+    }
+  `;
+
+  const children = options.map((option: any, i: number) => {
+    if (option != chosenOption) {
       return (
-        <div
-          onClick={() => setChosenElement(el)}
+        <SelectPropsDiv
+          onClick={() => handleClickOnOption(option)}
           key={i}
-          className="w-full pt-0.5 pb-0.5 px-2.5 cursor-pointer hover:bg-gray-100"
+          className="w-full pt-0.5 pb-0.5 px-2.5 cursor-pointer"
         >
-          <p className="mb-1">{el}</p>
-        </div>
+          <p className="mb-1">{option}</p>
+        </SelectPropsDiv>
       );
     }
   });
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <div ref={selectRef} className="relative">
-        <div
-          onClick={() => {
-            setIsOpen((prev) => !prev);
-          }}
-          className="flex justify-between items-center pb-1 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
-        >
-          <p>{chosenElement ?? "Placeholder"}</p>
-          {isOpen ? (
-            <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
-          ) : (
-            <IoIosArrowDown
-              size={17}
-              className="mt-1 ml-[5px] cursor-pointer"
-            />
-          )}
-        </div>
-        {isOpen && (
-          <div className="absolute mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
-            {children}
-          </div>
+    <div ref={selectRef} className="relative">
+      <div
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+        }}
+        className="flex justify-between items-center pb-1 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
+      >
+        <p>{chosenOption ?? "Placeholder"}</p>
+        {isOpen ? (
+          <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
+        ) : (
+          <IoIosArrowDown size={17} className="mt-1 ml-[5px] cursor-pointer" />
         )}
       </div>
+      {isOpen && (
+        <div className="absolute bg-white mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
