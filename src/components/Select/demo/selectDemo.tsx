@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Select from "../select";
-import Transition from "../../Transition/transition";
 
 export default function SelectDemo() {
   const options = ["Wade Cooper", "Arlene Mccoy", "Devon Webb", "Tom Cook"];
@@ -8,16 +7,10 @@ export default function SelectDemo() {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <div className="flex flex-col">
+        <p className="mb-3 ml-1">Option choisie: {chosenOption}</p>
         <Select value={chosenOption} onChange={setChosenOption}>
-          <Transition
-            start="invisible opacity-0"
-            end="visible opacity-100"
-            duration="400ms"
-          >
-            <Select.Options>{options}</Select.Options>
-          </Transition>
+          <Select.Options>{options}</Select.Options>
         </Select>
-        <p className="mt-2 ml-1">Option choisie: {chosenOption}</p>
       </div>
     </div>
   );

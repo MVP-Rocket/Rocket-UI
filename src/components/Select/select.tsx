@@ -57,8 +57,13 @@ function Select({ children, value, onChange }: selectType) {
   );
 }
 
-function Options({ children, hoverColor, props }: selectOptionsType) {
-  const { setIsOpen, value, onChange } = props;
+function Options({
+  children,
+  hoverColor,
+  props,
+  disconnected,
+}: selectOptionsType) {
+  const { isOpen, setIsOpen, value, onChange } = props;
 
   const SelectPropsDiv = styled.div`
     &:hover {
@@ -87,7 +92,11 @@ function Options({ children, hoverColor, props }: selectOptionsType) {
   });
 
   return (
-    <div className="absolute bg-white mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
+    <div
+      className={` ${disconnected && "mt-2"} ${
+        isOpen ? "visible" : "invisible"
+      } absolute bg-white h-fit w-72 rounded-md py-1 shadow-select`}
+    >
       {mappedOptions}
     </div>
   );
