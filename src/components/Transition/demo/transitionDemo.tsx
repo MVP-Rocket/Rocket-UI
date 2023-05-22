@@ -9,8 +9,8 @@ export default function TransitionDemo() {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Transition
           isShowing={isOpen}
-          start="opacity-0 scale-50"
-          end="opacity-100 scale-100"
+          start="invisible opacity-0 scale-50"
+          end="visible opacity-100 scale-100"
           duration="200ms"
           timing="ease-out"
         >

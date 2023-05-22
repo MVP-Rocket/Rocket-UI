@@ -1,8 +1,8 @@
+import { transitionPropsType } from "../../Transition/types/transitionPropsType";
+
 export interface selectOptionsType {
   children: string[];
   hoverColor?: string;
-  isOpen?: boolean;
-  setIsOpen?: any;
-  value?: string;
-  onChange?: any;
+  props?: any;
+  transitionProps?: transitionPropsType;
 }

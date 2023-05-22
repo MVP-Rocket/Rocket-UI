@@ -28,13 +28,20 @@ function Select({ children, value, onChange }: selectType) {
     }
   }
 
+  const props = {
+    isOpen,
+    setIsOpen,
+    value,
+    onChange,
+  };
+
   return (
     <div ref={selectRef} className="relative">
       <div
         onClick={() => {
           setIsOpen((prev) => !prev);
         }}
-        className="flex justify-between items-center pb-1 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
+        className="flex justify-between items-center pb-0.5 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
       >
         <p>{value ?? "Placeholder"}</p>
         {isOpen ? (
@@ -44,25 +51,15 @@ function Select({ children, value, onChange }: selectType) {
         )}
       </div>
       {Children.map(children, (child: any) => {
-        return cloneElement(child, {
-          isOpen,
-          setIsOpen,
-          value,
-          onChange,
-        });
+        return cloneElement(child, { props });
       })}
     </div>
   );
 }
 
-function Options({
-  children,
-  hoverColor,
-  isOpen,
-  setIsOpen,
-  value,
-  onChange,
-}: selectOptionsType) {
+function Options({ children, hoverColor, props }: selectOptionsType) {
+  const { setIsOpen, value, onChange } = props;
+
   const SelectPropsDiv = styled.div`
     &:hover {
       background-color: ${hoverColor ? hoverColor : "#262626"};
@@ -90,13 +87,9 @@ function Options({
   });
 
   return (
-    <>
-      {isOpen && (
-        <div className="absolute bg-white mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
-          {mappedOptions}
-        </div>
-      )}
-    </>
+    <div className="absolute bg-white mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
+      {mappedOptions}
+    </div>
   );
 }
 

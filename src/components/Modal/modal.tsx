@@ -1,6 +1,7 @@
 import React from "react";
 import { modalType } from "./types/modalType";
 import { modalCardType } from "./types/modalCardType";
+import { styled } from "styled-components";
 
 function Modal({
   children,
@@ -37,8 +38,8 @@ function Card({ children, height, width }: modalCardType) {
 
   return (
     <div
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg px-6 py-4"
       style={dynamicStyle}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg px-6 py-4"
     >
       {children}
     </div>

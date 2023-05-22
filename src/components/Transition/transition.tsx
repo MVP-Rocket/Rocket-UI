@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children, cloneElement } from "react";
 import { transitionType } from "./types/transitionType";
 
 export default function Transition({
@@ -8,13 +8,23 @@ export default function Transition({
   end,
   duration,
   timing,
+  props,
 }: transitionType) {
+  const transitionStyle = {
+    transitionDuration: duration,
+    transitionTimingFunction: timing,
+  };
+  const transitionClassName = `${
+    props?.isOpen || isShowing ? end : start
+  } transition-all`;
+
   return (
-    <div
-      className={`${isShowing ? end : start} transition-all absolute z-1`}
-      style={{ transitionDuration: duration, transitionTimingFunction: timing }}
-    >
-      {children}
+    <div className={transitionClassName} style={transitionStyle}>
+      {Children.map(children, (child: any) => {
+        return cloneElement(child, {
+          props,
+        });
+      })}
     </div>
   );
 }
