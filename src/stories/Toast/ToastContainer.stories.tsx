@@ -1,5 +1,5 @@
 import React from "react";
-import ToastContainerDemo from "../components/Toast/demo/toastContainerDemo";
+import ToastContainerDemo from "../../components/Toast/demo/toastContainerDemo";
 
 export default {
   component: ToastContainerDemo,

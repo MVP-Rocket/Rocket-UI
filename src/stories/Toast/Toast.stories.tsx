@@ -1,5 +1,5 @@
 import React from "react";
-import ToastCardDemo from "../components/Toast/demo/toastCardDemo";
+import ToastCardDemo from "../../components/Toast/demo/toastCardDemo";
 
 export default {
   component: ToastCardDemo,

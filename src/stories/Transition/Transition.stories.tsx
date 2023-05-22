@@ -1,5 +1,5 @@
 import React from "react";
-import TransitionDemo from "../components/Transition/transitionDemo";
+import TransitionDemo from "../../components/Transition/demo/transitionDemo";
 
 export default {
   component: TransitionDemo,

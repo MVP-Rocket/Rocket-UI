@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
-
-interface indexProps {
-  children?: any;
-  isOpen?: boolean;
-  onClose?: any;
-  noBackdrop?: boolean;
-  backdropOpacity?: number;
-}
+import React from "react";
+import { modalType } from "./types/modalType";
+import { modalCardType } from "./types/modalCardType";
 
 function Modal({
   children,
@@ -14,11 +8,9 @@ function Modal({
   onClose,
   backdropOpacity,
   noBackdrop,
-}: indexProps): any {
+}: modalType): any {
   const backdropStyle = {
-    background: backdropOpacity
-      ? `rgba(0,0,0,${backdropOpacity})`
-      : "rgba(0, 0, 0, 0.1)",
+    background: `rgba(0,0,0,${backdropOpacity ?? "0.1"})`,
   };
 
   return (
@@ -37,13 +29,7 @@ function Modal({
   );
 }
 
-interface modalCardProps {
-  children: any;
-  height?: string;
-  width?: string;
-}
-
-function Card({ children, height, width }: modalCardProps) {
+function Card({ children, height, width }: modalCardType) {
   const dynamicStyle = {
     height: height ?? "fit-content",
     width: width ?? "fit-content",

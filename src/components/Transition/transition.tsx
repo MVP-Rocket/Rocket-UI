@@ -1,13 +1,5 @@
 import React from "react";
-
-interface transitionProps {
-  children: any;
-  isShowing: boolean;
-  start: string;
-  end: string;
-  duration: string;
-  timing?: string;
-}
+import { transitionType } from "./types/transitionType";
 
 export default function Transition({
   children,
@@ -16,7 +8,7 @@ export default function Transition({
   end,
   duration,
   timing,
-}: transitionProps) {
+}: transitionType) {
   return (
     <div
       className={`${isShowing ? end : start} transition-all absolute z-1`}

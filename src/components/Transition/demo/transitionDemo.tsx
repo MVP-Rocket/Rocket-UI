@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Transition from "./transition";
-import Modal from "../Modal/modal";
+import Transition from "../transition";
+import Modal from "../../Modal/modal";
 
 export default function TransitionDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -11,7 +11,7 @@ export default function TransitionDemo() {
           isShowing={isOpen}
           start="opacity-0 scale-50"
           end="opacity-100 scale-100"
-          duration="220ms"
+          duration="200ms"
           timing="ease-out"
         >
           <Modal.Card height="200px" width="400px">

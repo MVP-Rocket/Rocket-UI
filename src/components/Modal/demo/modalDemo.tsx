@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "./modal";
+import Modal from "../modal";
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
