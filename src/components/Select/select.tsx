@@ -1,12 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useRef,
+  Children,
+  cloneElement,
+  useState,
+} from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { selectType } from "./types/selectType";
+import { selectOptionsType } from "./types/selectOptionsType";
 import styled from "styled-components";
+import { selectType } from "./types/selectType";
 
-export default function Select({ options, color, onChange }: selectType) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [chosenOption, setChosenOption] = useState<any>(options[0]);
+function Select({ children, value, onChange }: selectType) {
   const selectRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // Closing select when clicking outside of it
   useEffect(() => {
@@ -22,21 +28,55 @@ export default function Select({ options, color, onChange }: selectType) {
     }
   }
 
-  function handleClickOnOption(el: string) {
-    setChosenOption(el);
-    setIsOpen(false);
-    onChange(el);
-  }
+  return (
+    <div ref={selectRef} className="relative">
+      <div
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+        }}
+        className="flex justify-between items-center pb-1 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
+      >
+        <p>{value ?? "Placeholder"}</p>
+        {isOpen ? (
+          <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
+        ) : (
+          <IoIosArrowDown size={17} className="mt-1 ml-[5px] cursor-pointer" />
+        )}
+      </div>
+      {Children.map(children, (child: any) => {
+        return cloneElement(child, {
+          isOpen,
+          setIsOpen,
+          value,
+          onChange,
+        });
+      })}
+    </div>
+  );
+}
 
+function Options({
+  children,
+  hoverColor,
+  isOpen,
+  setIsOpen,
+  value,
+  onChange,
+}: selectOptionsType) {
   const SelectPropsDiv = styled.div`
     &:hover {
-      background-color: ${color ? color : "#262626"};
+      background-color: ${hoverColor ? hoverColor : "#262626"};
       color: white;
     }
   `;
 
-  const children = options.map((option: any, i: number) => {
-    if (option != chosenOption) {
+  function handleClickOnOption(el: string) {
+    setIsOpen(false);
+    onChange(el);
+  }
+
+  const mappedOptions = children.map((option: any, i: number) => {
+    if (option != value) {
       return (
         <SelectPropsDiv
           onClick={() => handleClickOnOption(option)}
@@ -50,25 +90,16 @@ export default function Select({ options, color, onChange }: selectType) {
   });
 
   return (
-    <div ref={selectRef} className="relative">
-      <div
-        onClick={() => {
-          setIsOpen((prev) => !prev);
-        }}
-        className="flex justify-between items-center pb-1 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
-      >
-        <p>{chosenOption ?? "Placeholder"}</p>
-        {isOpen ? (
-          <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
-        ) : (
-          <IoIosArrowDown size={17} className="mt-1 ml-[5px] cursor-pointer" />
-        )}
-      </div>
+    <>
       {isOpen && (
         <div className="absolute bg-white mt-2 h-fit w-72 rounded-md py-1 border-gray-400 border-[1px]">
-          {children}
+          {mappedOptions}
         </div>
       )}
-    </div>
+    </>
   );
 }
+
+Select.Options = Options;
+
+export default Select;

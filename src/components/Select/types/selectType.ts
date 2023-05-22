@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export interface selectType {
-  options: string[];
+  children: ReactNode;
+  value?: string;
   onChange?: any;
-  color?: string;
 }
