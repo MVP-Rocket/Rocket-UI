@@ -1,4 +1,4 @@
-export interface navBarType {
+export interface navBar {
   appLogo?: any;
   profileImg?: any;
 }

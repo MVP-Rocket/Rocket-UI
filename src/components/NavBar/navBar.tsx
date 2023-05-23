@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { navBarType } from "./types/navBarType";
+import { navBar } from "./types/navBar";
 import { GrSearch } from "react-icons/gr";
 import SearchModal from "./modal/searchModal";
 
-export default function NavBar({ appLogo, profileImg }: navBarType) {
+export default function NavBar({ appLogo, profileImg }: navBar) {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   return (
     <>

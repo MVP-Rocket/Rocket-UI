@@ -1,8 +1,8 @@
 import React from "react";
 import NavBar from "../navBar";
-import { navBarType } from "../types/navBarType";
+import { navBar } from "../types/navBar";
 
-export default function NavBarDemo({ appLogo, profileImg }: navBarType) {
+export default function NavBarDemo({ appLogo, profileImg }: navBar) {
   return (
     <div>
       <NavBar appLogo={appLogo} profileImg={profileImg} />
