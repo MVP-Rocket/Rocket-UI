@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
+import { timings } from "./timing";
 
-export interface transitionType {
+export interface transition {
   children: ReactNode;
   isShowing?: boolean;
   start: string;
   end: string;
   duration: string;
-  timing?: string;
+  timing?: timings[keyof timings];
   props?: any;
 }

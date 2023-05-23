@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Transition from "../transition";
 import Modal from "../../Modal/modal";
+import { timings } from "../types/timing";
 
 export default function TransitionDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -12,7 +13,7 @@ export default function TransitionDemo() {
           start="invisible opacity-0 scale-50"
           end="visible opacity-100 scale-100"
           duration="200ms"
-          timing="ease-out"
+          timing={timings.easeOut}
         >
           <Modal.Card height="200px" width="400px">
             <Modal.Title>Rocket UI - Modal</Modal.Title>
