@@ -5,7 +5,7 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-import { toastType } from "./types/toastType";
+import { toast } from "./types/toast";
 
 export default function ToastCard({
   message,
@@ -14,7 +14,7 @@ export default function ToastCard({
   animation,
   duration,
   position,
-}: toastType) {
+}: toast) {
   const [isDisplayed, setIsDisplayed] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
 
@@ -59,8 +59,10 @@ export default function ToastCard({
     transitionEnd = "scale-100 opacity-100";
   }
 
+  console.log(position);
+
   // Position
-  if (position === "top-left" || position === "bottom-left") {
+  if (position === "top-4 left-0" || position === "bottom-4 left-0") {
     justifying = "justify-start";
     margin = "ml-4";
     if (!animation || animation === "slide") {
@@ -75,7 +77,7 @@ export default function ToastCard({
         className={`${borderColor} ${backgroundColor} ${margin} ${
           isClosed && "hidden"
         } ${isDisplayed ? transitionEnd : transitionStart}
-        min-w-[300px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
+       min-w-[300px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
           {icon}

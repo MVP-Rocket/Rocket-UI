@@ -1,7 +1,6 @@
 import React from "react";
-import { modalType } from "./types/modalType";
-import { modalCardType } from "./types/modalCardType";
-import { styled } from "styled-components";
+import { modal } from "./types/modal";
+import { modalCard } from "./types/modalCard";
 
 function Modal({
   children,
@@ -9,13 +8,17 @@ function Modal({
   onClose,
   backdropOpacity,
   noBackdrop,
-}: modalType): any {
+}: modal): any {
   const backdropStyle = {
     background: `rgba(0,0,0,${backdropOpacity ?? "0.1"})`,
   };
 
   return (
-    <div className={`${!isOpen && "invisible"} absolute z-50`}>
+    <div
+      className={`${
+        !isOpen && "invisible"
+      } absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+    >
       <div className="h-screen w-screen flex justify-center items-center">
         {!noBackdrop && (
           <div
@@ -30,16 +33,12 @@ function Modal({
   );
 }
 
-function Card({ children, height, width }: modalCardType) {
-  const dynamicStyle = {
-    height: height ?? "fit-content",
-    width: width ?? "fit-content",
-  };
-
+function Card({ children, width = "w-[450px]", noPadding }: modalCard) {
   return (
     <div
-      style={dynamicStyle}
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg px-6 py-4"
+      className={`${width} ${
+        !noPadding && "px-6 py-4"
+      } absolute top-1/2 left-1/2 h-fit -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg max-w-[90vw]`}
     >
       {children}
     </div>

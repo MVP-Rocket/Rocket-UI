@@ -1,4 +1,4 @@
-export interface toastOptionsType {
+export interface options {
   type?: string;
   theme?: string;
   animation?: string;

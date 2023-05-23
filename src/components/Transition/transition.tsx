@@ -1,5 +1,5 @@
 import React, { Children, cloneElement } from "react";
-import { transitionType } from "./types/transitionType";
+import { transition } from "./types/transition";
 
 export default function Transition({
   children,
@@ -9,7 +9,7 @@ export default function Transition({
   duration,
   timing,
   props,
-}: transitionType) {
+}: transition) {
   const transitionStyle = {
     transitionDuration: duration,
     transitionTimingFunction: timing,
