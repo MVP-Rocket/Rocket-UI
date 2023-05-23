@@ -42,7 +42,7 @@ function Card({ children, height, width, noPadding }: modalCardType) {
   return (
     <div
       style={dynamicStyle}
-      className={`absolute bg-white rounded-2xl shadow-lg ${
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg ${
         !noPadding && "px-6 py-4"
       }`}
     >

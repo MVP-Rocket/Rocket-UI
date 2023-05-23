@@ -1,4 +1,4 @@
-export interface selectOptionsType {
+export interface selectOptions {
   children: string[];
   hoverColor?: string;
   props?: any;

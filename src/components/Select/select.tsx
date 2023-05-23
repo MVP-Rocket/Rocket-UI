@@ -6,11 +6,20 @@ import React, {
   useState,
 } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { selectOptionsType } from "./types/selectOptionsType";
+import { selectOptions } from "./types/selectOptions";
+import { select } from "./types/select";
+import { heights, widths } from "./types/size";
 import styled from "styled-components";
-import { selectType } from "./types/selectType";
 
-function Select({ children, value, onChange }: selectType) {
+function Select({
+  children,
+  value,
+  onChange,
+  height = heights.md,
+  width = widths.md,
+  placeholder,
+  noBorder,
+}: select) {
   const selectRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -33,6 +42,7 @@ function Select({ children, value, onChange }: selectType) {
     setIsOpen,
     value,
     onChange,
+    width,
   };
 
   return (
@@ -41,9 +51,13 @@ function Select({ children, value, onChange }: selectType) {
         onClick={() => {
           setIsOpen((prev) => !prev);
         }}
-        className="flex justify-between items-center pb-0.5 px-2.5 h-9 w-72 border-gray-400 border-[1px] rounded-md shadow-sm cursor-pointer"
+        className={`${height} ${width} ${
+          !noBorder && "border-gray-400 border-[1px]"
+        } ${
+          noBorder ? "shadow-select" : "shadow-sm"
+        } flex justify-between items-center pb-0.5 px-3 rounded-md cursor-pointer`}
       >
-        <p>{value ?? "Placeholder"}</p>
+        <p>{placeholder ?? value}</p>
         {isOpen ? (
           <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
         ) : (
@@ -57,17 +71,12 @@ function Select({ children, value, onChange }: selectType) {
   );
 }
 
-function Options({
-  children,
-  hoverColor,
-  props,
-  disconnected,
-}: selectOptionsType) {
-  const { isOpen, setIsOpen, value, onChange } = props;
+function Options({ children, hoverColor, props, disconnected }: selectOptions) {
+  const { isOpen, setIsOpen, value, onChange, width } = props;
 
   const SelectPropsDiv = styled.div`
     &:hover {
-      background-color: ${hoverColor ? hoverColor : "#262626"};
+      background-color: ${hoverColor ?? "#262626"};
       color: white;
     }
   `;
@@ -83,7 +92,7 @@ function Options({
         <SelectPropsDiv
           onClick={() => handleClickOnOption(option)}
           key={i}
-          className="w-full pt-0.5 pb-0.5 px-2.5 cursor-pointer"
+          className="w-full pt-1 pb-1 px-3 cursor-pointer"
         >
           <p className="mb-1">{option}</p>
         </SelectPropsDiv>
@@ -93,9 +102,9 @@ function Options({
 
   return (
     <div
-      className={` ${disconnected && "mt-2"} ${
+      className={` ${disconnected && "mt-2.5"} ${
         isOpen ? "visible" : "invisible"
-      } absolute bg-white h-fit w-72 rounded-md py-1 shadow-select`}
+      } ${width} absolute bg-white h-fit  rounded-md py-1 shadow-select`}
     >
       {mappedOptions}
     </div>
