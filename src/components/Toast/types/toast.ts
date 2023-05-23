@@ -1,4 +1,4 @@
-export interface toastType {
+export interface toast {
   message?: string;
   type?: string;
   theme?: string;
