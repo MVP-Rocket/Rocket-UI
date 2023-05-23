@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Modal from "../modal";
+import { widths } from "../types/cardSize";
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <Modal.Card height="200px" width="400px">
+        <Modal.Card width={widths.xxl}>
           <Modal.Title>Rocket UI - Modal</Modal.Title>
           <Modal.Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

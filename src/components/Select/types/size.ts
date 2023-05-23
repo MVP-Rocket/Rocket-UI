@@ -1,10 +1,10 @@
-export const heights: selectHeight = {
+export const heights: height = {
   lg: "h-12",
   md: "h-11",
   sm: "h-10",
 };
 
-export const widths: selectWidth = {
+export const widths: width = {
   xxl: "w-[550px]",
   xl: "w-[450px]",
   lg: "w-96",
@@ -12,13 +12,13 @@ export const widths: selectWidth = {
   sm: "w-56",
 };
 
-export interface selectHeight {
+export interface height {
   lg: string;
   md: string;
   sm: string;
 }
 
-export interface selectWidth {
+export interface width {
   xxl: string;
   xl: string;
   lg: string;
