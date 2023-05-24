@@ -16,7 +16,7 @@ export default function Transition({
   };
   const transitionClassName = `${
     props?.isOpen || isShowing ? end : start
-  } transition-all`;
+  } transition-all h-screen w-screen`;
 
   return (
     <div className={transitionClassName} style={transitionStyle}>
