@@ -59,8 +59,6 @@ export default function ToastCard({
     transitionEnd = "scale-100 opacity-100";
   }
 
-  console.log(position);
-
   // Position
   if (position === "top-4 left-0" || position === "bottom-4 left-0") {
     justifying = "justify-start";
