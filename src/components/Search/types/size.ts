@@ -6,11 +6,11 @@ export const heights: height = {
 };
 
 export const widths: width = {
-  xxl: "w-[700px]",
+  xxl: "w-[750px]",
   xl: "w-[550px]",
   lg: "w-[400px]",
-  md: "w-72",
-  sm: "w-48",
+  md: "w-[300px]",
+  sm: "w-54",
 };
 
 export interface height {

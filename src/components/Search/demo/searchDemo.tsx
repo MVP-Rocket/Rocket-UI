@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Search from "../search";
 import { heights, widths } from "../types/size";
 
@@ -7,11 +7,7 @@ export default function SearchDemo() {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
       <div className="flex">
-        <Search
-          height={heights.md}
-          width={widths.md}
-          onChange={setSearchValue}
-        />
+        <Search onChange={setSearchValue} />
       </div>
       <p className="mt-2">Recherche: {searchValue}</p>
     </div>

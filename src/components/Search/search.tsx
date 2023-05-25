@@ -5,7 +5,7 @@ import { GrSearch } from "react-icons/gr";
 export default function Search({
   onChange,
   height = "h-10",
-  width = "w-56",
+  width = "w-[300px]",
   placeholder,
   iconRight,
   iconBorder,
