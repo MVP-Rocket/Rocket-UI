@@ -15,7 +15,6 @@ export default function SelectDemo() {
           height={heights.md}
           width={widths.md}
           placeholder="Choisissez un nom"
-          noBorder
         >
           <Select.Options disconnected>{options}</Select.Options>
         </Select>
