@@ -18,9 +18,17 @@ export default function SearchDemo() {
     });
   }, [searchValue]);
 
+  function handleSearch() {
+    console.log("endSearch!");
+  }
+
   return (
     <div className="h-screen w-screen flex justify-center items-center">
-      <Search onChange={setSearchValue} results={results} />
+      <Search
+        onChange={setSearchValue}
+        results={results}
+        onEndSearch={handleSearch}
+      />
     </div>
   );
 }
