@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
-import { selectHeight, selectWidth } from "./size";
+import { height, width } from "./size";
 
 export interface select {
   children: ReactNode;
   value?: string;
   onChange?: any;
-  height?: selectHeight[keyof selectHeight];
-  width?: selectWidth[keyof selectWidth];
+  height?: height[keyof height];
+  width?: width[keyof width];
   placeholder?: string;
   noBorder?: boolean;
 }

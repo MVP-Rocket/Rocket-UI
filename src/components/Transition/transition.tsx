@@ -14,6 +14,7 @@ export default function Transition({
     transitionDuration: duration,
     transitionTimingFunction: timing,
   };
+
   const transitionClassName = `${
     props?.isOpen || isShowing ? end : start
   } transition-all h-screen w-screen`;

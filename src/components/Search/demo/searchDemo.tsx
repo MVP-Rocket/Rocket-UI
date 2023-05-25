@@ -8,8 +8,8 @@ export default function SearchDemo() {
     <div className="h-screen w-screen flex flex-col justify-center items-center">
       <div className="flex">
         <Search
-          height={heights.lg}
-          width={widths.lg}
+          height={heights.md}
+          width={widths.md}
           onChange={setSearchValue}
         />
       </div>
