@@ -46,18 +46,18 @@ function Select({
   };
 
   return (
-    <div ref={selectRef} className="relative">
+    <div ref={selectRef}>
       <div
         onClick={() => {
           setIsOpen((prev) => !prev);
         }}
         className={`${height} ${width} ${
-          !noBorder && "border-gray-400 border-[1px]"
+          !noBorder && "outline outline-1 outline-gray-400"
         } ${
           noBorder ? "shadow-select" : "shadow-sm"
-        } flex justify-between items-center pb-0.5 px-3 rounded-md cursor-pointer`}
+        } flex justify-between items-center pb-0.5 px-3 rounded-md cursor-pointer bg-white`}
       >
-        <p>{placeholder ?? value}</p>
+        <p>{value ? value : placeholder ?? "Choisissez une option"}</p>
         {isOpen ? (
           <IoIosArrowUp size={17} className="mt-1 ml-[5px] cursor-pointer" />
         ) : (
@@ -102,9 +102,9 @@ function Options({ children, hoverColor, props, disconnected }: selectOptions) {
 
   return (
     <div
-      className={` ${disconnected && "mt-2.5"} ${
+      className={` ${disconnected ? "mt-2.5" : "mt-[1px]"} ${
         isOpen ? "visible" : "invisible"
-      } ${width} absolute bg-white h-fit  rounded-md py-1 shadow-select`}
+      } ${width} absolute bg-white h-fit rounded-md py-1 shadow-select`}
     >
       {mappedOptions}
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children, cloneElement, useEffect, useRef } from "react";
 import { modal } from "./types/modal";
 import { modalCard } from "./types/modalCard";
 
@@ -12,33 +12,42 @@ function Modal({
   const backdropStyle = {
     background: `rgba(0,0,0,${backdropOpacity ?? "0.1"})`,
   };
+  const props = { onClose };
 
   return (
-    <div
-      className={`${
-        !isOpen && "invisible"
-      } absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
-    >
-      <div className="h-screen w-screen flex justify-center items-center">
-        {!noBackdrop && (
-          <div
-            onClick={(e) => e.target === e.currentTarget && onClose()}
-            className="fixed h-screen w-screen"
-            style={backdropStyle}
-          />
-        )}
-        {children}
-      </div>
+    <div className={`${!isOpen && "invisible"} absolute h-screen w-screen`}>
+      {!noBackdrop && (
+        <div className="fixed h-screen w-screen -z-10" style={backdropStyle} />
+      )}
+      {Children.map(children, (child: any) => {
+        return cloneElement(child, { props });
+      })}
     </div>
   );
 }
 
-function Card({ children, width = "w-[450px]", noPadding }: modalCard) {
+function Card({ children, width = "w-[450px]", noPadding, props }: modalCard) {
+  // Closing modal when clicking outside of it
+  const modalCardRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalCardRef]);
+
+  function handleClickOutside(e: any) {
+    if (modalCardRef.current && !modalCardRef.current.contains(e.target)) {
+      props.onClose();
+    }
+  }
+
   return (
     <div
+      ref={modalCardRef}
       className={`${width} ${
         !noPadding && "px-6 py-4"
-      } absolute top-1/2 left-1/2 h-fit -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg max-w-[90vw]`}
+      } absolute top-1/2 left-1/2 -translate-y-[50%] -translate-x-[50%] z-50 bg-white rounded-2xl shadow-lg max-w-[90vw]`}
     >
       {children}
     </div>

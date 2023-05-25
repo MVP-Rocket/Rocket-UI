@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Transition from "../transition";
 import Modal from "../../Modal/modal";
 import { timings } from "../types/timing";
+import { widths } from "../../Modal/types/cardSize";
 
 export default function TransitionDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -15,7 +16,7 @@ export default function TransitionDemo() {
           duration="200ms"
           timing={timings.easeOut}
         >
-          <Modal.Card height="200px" width="400px">
+          <Modal.Card width={widths.md}>
             <Modal.Title>Rocket UI - Modal</Modal.Title>
             <Modal.Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
