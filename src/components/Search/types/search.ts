@@ -8,4 +8,5 @@ export interface search {
   iconPosition?: string;
   iconRight?: boolean;
   iconBorder?: boolean;
+  results?: any;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { search } from "./types/search";
 import { GrSearch } from "react-icons/gr";
 
@@ -9,9 +9,17 @@ export default function Search({
   placeholder,
   iconRight,
   iconBorder,
+  results,
 }: search) {
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  function handleSearchChange(e: any) {
+    e.target.value === "" ? setIsSearching(false) : setIsSearching(true);
+    onChange(e.target.value);
+  }
+
   return (
-    <>
+    <div className="flex">
       {!iconRight && (
         <div
           className={`${height} ${
@@ -21,17 +29,28 @@ export default function Search({
           <GrSearch size={24} />
         </div>
       )}
-      <input
-        type="text"
-        onChange={(e) => onChange(e.target.value)}
-        className={`${height} ${width} ${
-          height === "h-9" ? "text-md" : "text-lg"
-        } ${
-          iconRight ? "rounded-l-lg" : "rounded-r-lg"
-        } cursor-pointer pl-4 pb-0.5 z-10 outline outline-1 outline-gray-400 hover:outline-blue-600 
+      <div className="relative">
+        <input
+          type="text"
+          onChange={(e) => handleSearchChange(e)}
+          className={`${height} ${width} ${
+            height === "h-9" ? "text-md" : "text-lg"
+          } ${
+            !isSearching && (iconRight ? "rounded-l-lg" : "rounded-r-lg")
+          } cursor-pointer pl-4 pb-0.5 z-10 outline outline-1 outline-gray-400 hover:outline-blue-600 
         focus:outline focus:outline-2 focus:outline-blue-600 placeholder:text-gray-400`}
-        placeholder={`${placeholder ?? "Rechercher"}`}
-      />
+          placeholder={`${placeholder ?? "Rechercher"}`}
+        />
+        {isSearching && results && (
+          <div className="absolute w-full flex flex-col p-3 gap-2 mt-[3px] bg-white rounded-b-lg shadow-search outline outline-1 outline-white">
+            {results.length > 0
+              ? results.map((el: any, i: number) => {
+                  return <div key={i}>{el}</div>;
+                })
+              : "Aucun résultat trouvé"}
+          </div>
+        )}
+      </div>
       {iconRight && (
         <div
           className={`${height} ${
@@ -41,6 +60,6 @@ export default function Search({
           <GrSearch size={24} />
         </div>
       )}
-    </>
+    </div>
   );
 }

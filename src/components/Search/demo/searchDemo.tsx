@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../search";
-import { heights, widths } from "../types/size";
+
+const data = ["Paul", "Anna", "Eléonore", "Thomas", "Théo"];
 
 export default function SearchDemo() {
   const [searchValue, setSearchValue] = useState<string>("");
+  const [results, setResults] = useState([""]);
+
+  // Results demo
+  useEffect(() => {
+    data.map((str) => {
+      searchValue
+        ? str.includes(searchValue) &&
+          !results.includes(str) &&
+          setResults([...results, str])
+        : setResults([]);
+    });
+  }, [searchValue]);
+
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
-      <div className="flex">
-        <Search onChange={setSearchValue} />
-      </div>
-      <p className="mt-2">Recherche: {searchValue}</p>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Search onChange={setSearchValue} results={results} />
     </div>
   );
 }
