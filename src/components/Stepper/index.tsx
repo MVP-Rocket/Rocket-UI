@@ -1,78 +1,20 @@
 import React, { useEffect } from "react";
-import { colors, typedTailwindColors } from "../../global";
+import colors from "tailwindcss/colors";
+import { DefaultColors } from "tailwindcss/types/generated/colors";
 import CheckMark from "./../../assets/icons/check-mark.svg";
-
-export interface Step {
-  name: string;
-  active: boolean;
-}
-
-export type DirectionsType = {
-  col: string;
-  row: string;
-};
-
-type SizesType = {
-  responsive: DirectionsType;
-  xxl: DirectionsType;
-  xl: DirectionsType;
-  lg: DirectionsType;
-  md: DirectionsType;
-  sm: DirectionsType;
-  xs: DirectionsType;
-};
-
-export const sizes: SizesType = {
-  responsive: { row: "w-full", col: "h-full" },
-  xxl: { row: "w-96", col: "h-96" },
-  xl: { row: "w-80", col: "h-80" },
-  lg: { row: "w-64", col: "h-64" },
-  md: { row: "w-52", col: "h-52" },
-  sm: { row: "w-34", col: "h-34" },
-  xs: { row: "w-20", col: "h-20" },
-};
-
-export enum directions {
-  row, // flex-row
-  col, // flex-col
-}
-
-export type textDirectionsType = {
-  col: { left: string; right: string };
-  row: { top: string; bottom: string };
-};
-
-export const textDirections: textDirectionsType = {
-  col: { left: "left", right: "right" },
-  row: { top: "top", bottom: "bottom" },
-};
-
-export type checkedType = {
-  true: true;
-  false: false;
-};
-
-export const checkedValues: checkedType = {
-  true: true,
-  false: false,
-};
-
-export type animatedType = {
-  true: true;
-  false: false;
-};
-
-export const animatedValues: animatedType = {
-  true: true,
-  false: false,
-};
+import { TailwindColorsType } from "../../global";
+import { Step, textDirectionsType } from "./types";
+import { animatedType } from "./types";
+import { checkedType } from "./types";
+import { SizesType } from "./types";
+import { directions } from "./types";
 
 export interface StepperProps {
   steps: Step[];
   animated?: animatedType[keyof animatedType];
-  textColor?: string;
-  disabledColor?: string;
-  activeColor?: string;
+  textColor?: TailwindColorsType;
+  disabledColor?: TailwindColorsType;
+  activeColor?: TailwindColorsType;
   checked?: checkedType[keyof checkedType];
   size?: SizesType[keyof SizesType][keyof SizesType[keyof SizesType]];
   direction?: directions;
@@ -85,18 +27,42 @@ export interface StepIndexProps {
   $disabled: boolean;
 }
 
+export const textDirections: textDirectionsType = {
+  col: { left: "left", right: "right" },
+  row: { top: "top", bottom: "bottom" },
+};
+
+export const animatedValues: animatedType = {
+  true: true,
+  false: false,
+};
+
+export const checkedValues: checkedType = {
+  true: true,
+  false: false,
+};
+
+export const sizes: SizesType = {
+  responsive: { row: "w-full", col: "h-full" },
+  xxl: { row: "w-96", col: "h-96" },
+  xl: { row: "w-80", col: "h-80" },
+  lg: { row: "w-64", col: "h-64" },
+  md: { row: "w-52", col: "h-52" },
+  sm: { row: "w-34", col: "h-34" },
+  xs: { row: "w-20", col: "h-20" },
+};
+
 export function Stepper({
   steps,
-  activeColor = colors.primary,
-  disabledColor = colors.disabled,
-  textColor = "white",
+  activeColor = colors.amber[500],
+  disabledColor = colors.amber[500],
+  textColor = colors.amber[500],
   animated = animatedValues.false,
   checked = checkedValues.true, // active check icons
   size = sizes.responsive.row, // sizes
   direction = directions.row,
   textDirection = textDirections.row.bottom,
 }: StepperProps) {
-  console.log(typedTailwindColors());
   return (
     <div
       className={`flex w-full h-full ${
