@@ -1,13 +1,8 @@
 import React from "react";
 
-import {
-  Step,
-  Stepper,
-  StepperProps,
-  directions,
-  sizes,
-  textDirections,
-} from "../components/Stepper";
+import { directions } from "../components/Stepper/types";
+import colors from "tailwindcss/colors";
+import { Stepper, sizes, textDirections } from "../components/Stepper";
 
 export default {
   component: Stepper,
@@ -54,8 +49,8 @@ export const StepperStoryChangeTest = () => {
   return (
     <div className="w-screen h-screen flex gap-10 p-32">
       <Stepper
-        textColor="black"
-        activeColor="red"
+        textColor={colors.blue[500]}
+        activeColor={colors.blue[500]}
         size={sizes.responsive.row}
         direction={directions.row}
         textDirection={textDirections.row.top}
@@ -73,8 +68,4 @@ export const StepperStoryChangeTest = () => {
       </div>
     </div>
   );
-};
-
-export const StepperStory = {
-  render: () => <Stepper animated={true} size="lg" steps={datas} />,
 };
