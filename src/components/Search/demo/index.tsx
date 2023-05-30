@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Search from "../search";
+import Search from "../";
 
 const data = ["Paul", "Anna", "Eléonore", "Thomas", "Théo"];
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { heights, widths } from "../types/size";
-import Select from "../select";
+import { heights, widths } from "../";
+import Select from "../";
 
 export default function SelectDemo() {
   const options = ["Wade Cooper", "Arlene Mccoy", "Devon Webb", "Tom Cook"];

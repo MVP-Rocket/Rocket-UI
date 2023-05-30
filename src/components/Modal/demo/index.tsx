@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Modal from "../modal";
-import { widths } from "../types/cardSize";
+import Modal from "..";
+import { widths } from "..";
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

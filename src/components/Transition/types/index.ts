@@ -15,3 +15,12 @@ export interface timings {
   linear: string;
   infinite: string;
 }
+
+export interface transition {
+  isShowing?: boolean;
+  start: string;
+  end: string;
+  duration: string;
+  timing?: timings[keyof timings];
+  props?: any;
+}

@@ -1,4 +1,4 @@
-import { height, width } from "./size";
+import { height, width } from "../../../global/types";
 
 export interface search {
   onChange: (value?: any) => void;

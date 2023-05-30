@@ -1,5 +1,5 @@
 import React from "react";
-import SearchDemo from "../../components/Search/demo/searchDemo";
+import SearchDemo from "../../components/Search/demo";
 
 export default {
   component: SearchDemo,

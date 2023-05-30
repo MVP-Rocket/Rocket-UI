@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Transition from "../transition";
-import Modal from "../../Modal/modal";
-import { timings } from "../types/timing";
-import { widths } from "../../Modal/types/cardSize";
+import Transition from "../";
+import Modal from "../../Modal";
+import { timings } from "../types";
+import { widths } from "../../Modal";
 
 export default function TransitionDemo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

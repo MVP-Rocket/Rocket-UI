@@ -1,5 +1,5 @@
 import React from "react";
-import ModalDemo from "../../components/Modal/demo/modalDemo";
+import ModalDemo from "../../components/Modal/demo";
 
 export default {
   component: ModalDemo,

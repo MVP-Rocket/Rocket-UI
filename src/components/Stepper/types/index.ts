@@ -1,3 +1,5 @@
+import { TailwindColorsType } from "../../../global";
+
 export interface Step {
   name: string;
   active: boolean;
@@ -37,3 +39,21 @@ export type animatedType = {
   true: true;
   false: false;
 };
+
+export interface StepperProps {
+  steps: Step[];
+  animated?: animatedType[keyof animatedType];
+  textColor?: TailwindColorsType;
+  disabledColor?: TailwindColorsType;
+  activeColor?: TailwindColorsType;
+  checked?: checkedType[keyof checkedType];
+  size?: SizesType[keyof SizesType][keyof SizesType[keyof SizesType]];
+  direction?: directions;
+  textDirection?:
+    | textDirectionsType["col"]["left" | "right"]
+    | textDirectionsType["row"]["top" | "bottom"];
+}
+
+export interface StepIndexProps {
+  $disabled: boolean;
+}
