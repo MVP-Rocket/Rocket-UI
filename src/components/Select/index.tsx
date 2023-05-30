@@ -6,10 +6,25 @@ import React, {
   useState,
 } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { selectOptions } from "./types/selectOptions";
-import { select } from "./types/select";
-import { heights, widths } from "./types/size";
+import { selectOptions } from "./types";
+import { select } from "./types";
 import styled from "styled-components";
+import { height, width } from "../Search/types";
+
+export const heights: height = {
+  xl: "h-16",
+  lg: "h-12",
+  md: "h-11",
+  sm: "h-10",
+};
+
+export const widths: width = {
+  xxl: "w-[550px]",
+  xl: "w-[450px]",
+  lg: "w-96",
+  md: "w-72",
+  sm: "w-56",
+};
 
 function Select({
   children,
@@ -19,7 +34,7 @@ function Select({
   width = widths.md,
   placeholder,
   noBorder,
-}: select) {
+}: React.PropsWithChildren<select>) {
   const selectRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -92,9 +107,9 @@ function Options({ children, hoverColor, props, disconnected }: selectOptions) {
         <SelectPropsDiv
           onClick={() => handleClickOnOption(option)}
           key={i}
-          className="w-full pt-1 pb-1 px-3 cursor-pointer"
+          className="w-full py-2 px-3 cursor-pointer"
         >
-          <p className="mb-1">{option}</p>
+          <p>{option}</p>
         </SelectPropsDiv>
       );
     }
@@ -104,7 +119,7 @@ function Options({ children, hoverColor, props, disconnected }: selectOptions) {
     <div
       className={` ${disconnected ? "mt-2.5" : "mt-[1px]"} ${
         isOpen ? "visible" : "invisible"
-      } ${width} absolute bg-white h-fit rounded-md py-1 shadow-select`}
+      } ${width} absolute bg-white h-fit overflow-hidden rounded-md shadow-select`}
     >
       {mappedOptions}
     </div>

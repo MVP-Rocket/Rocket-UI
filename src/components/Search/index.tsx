@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { search } from "./types/search";
+import { search } from "./types";
 import { GrSearch } from "react-icons/gr";
+import { height } from "./types";
+import { width } from "../Modal/types";
+
+export const heights: height = {
+  xl: "h-12",
+  lg: "h-11",
+  md: "h-10",
+  sm: "h-9",
+};
+
+export const widths: width = {
+  xxl: "w-[750px]",
+  xl: "w-[550px]",
+  lg: "w-[400px]",
+  md: "w-[300px]",
+  sm: "w-54",
+};
 
 export default function Search({
   onChange,
-  height = "h-10",
-  width = "w-[300px]",
+  height = heights.md,
+  width = widths.md,
   placeholder,
   iconRight,
-  iconBorder,
+  iconBorder = true,
   results,
   onEndSearch,
 }: search) {
@@ -31,7 +48,7 @@ export default function Search({
           onClick={() => onEndSearch && onEndSearch()}
           className={`${height} ${
             iconBorder ? "outline-gray-400" : "outline-gray-100"
-          } px-1.5 flex items-center bg-gray-100 outline outline-1 rounded-l-lg cursor-pointer`}
+          } px-2.5 flex items-center bg-gray-100 outline outline-1 rounded-l-lg cursor-pointer`}
         >
           <GrSearch size={24} />
         </div>
@@ -45,7 +62,7 @@ export default function Search({
               height === "h-9" ? "text-md" : "text-lg"
             } ${
               !isSearching && (iconRight ? "rounded-l-lg" : "rounded-r-lg")
-            } cursor-pointer pl-4 pb-0.5 z-10 outline outline-1 outline-gray-400 hover:outline-blue-600 
+            } cursor-text pl-4 pb-0.5 z-10 outline outline-1 outline-gray-400 hover:outline-blue-600 
         focus:outline focus:outline-2 focus:outline-blue-600 placeholder:text-gray-400`}
             placeholder={`${placeholder ?? "Rechercher"}`}
           />

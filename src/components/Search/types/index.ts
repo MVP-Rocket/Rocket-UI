@@ -1,4 +1,17 @@
-import { height, width } from "./size";
+export interface height {
+  xl: string;
+  lg: string;
+  md: string;
+  sm: string;
+}
+
+export interface width {
+  xxl: string;
+  xl: string;
+  lg: string;
+  md: string;
+  sm: string;
+}
 
 export interface search {
   onChange: (value?: any) => void;
