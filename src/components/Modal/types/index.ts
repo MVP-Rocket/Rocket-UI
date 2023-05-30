@@ -1,10 +1,4 @@
-export interface width {
-  xxl: string;
-  xl: string;
-  lg: string;
-  md: string;
-  sm: string;
-}
+import { width } from "../../../global/types";
 
 export interface modal {
   isOpen?: boolean;

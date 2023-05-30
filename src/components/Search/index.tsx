@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { search } from "./types";
 import { GrSearch } from "react-icons/gr";
-import { height } from "./types";
-import { width } from "../Modal/types";
+import { height } from "../../global/types";
+import { width } from "../../global/types";
 
 export const heights: height = {
+  xxl: "h-16",
   xl: "h-12",
   lg: "h-11",
   md: "h-10",

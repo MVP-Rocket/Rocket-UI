@@ -1,17 +1,4 @@
-export interface height {
-  xl: string;
-  lg: string;
-  md: string;
-  sm: string;
-}
-
-export interface width {
-  xxl: string;
-  xl: string;
-  lg: string;
-  md: string;
-  sm: string;
-}
+import { height, width } from "../../../global/types";
 
 export interface search {
   onChange: (value?: any) => void;

@@ -1,7 +1,7 @@
 import React, { Children, cloneElement, useEffect, useRef } from "react";
 import { modal } from "./types";
 import { modalCard } from "./types";
-import { width } from "./types";
+import { width } from "./../../global/types";
 
 export const widths: width = {
   xxl: "w-[850px]",
@@ -37,7 +37,7 @@ function Modal({
 
 function Card({
   children,
-  width = "w-[450px]",
+  width = widths.lg,
   noPadding,
   props,
 }: React.PropsWithChildren<modalCard>): React.FC {

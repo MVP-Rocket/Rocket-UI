@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { height, width } from "../../../global/types";
 
 export interface select {
   value?: string;
@@ -14,18 +15,4 @@ export interface selectOptions {
   hoverColor?: string;
   props?: any;
   disconnected?: boolean;
-}
-
-export interface height {
-  lg: string;
-  md: string;
-  sm: string;
-}
-
-export interface width {
-  xxl: string;
-  xl: string;
-  lg: string;
-  md: string;
-  sm: string;
 }

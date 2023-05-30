@@ -9,9 +9,10 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { selectOptions } from "./types";
 import { select } from "./types";
 import styled from "styled-components";
-import { height, width } from "../Search/types";
+import { height, width } from "../../global/types";
 
 export const heights: height = {
+  xxl: "h-20",
   xl: "h-16",
   lg: "h-12",
   md: "h-11",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Transition from "../transition";
+import Transition from "../";
 import Modal from "../../Modal";
 import { timings } from "../types";
 import { widths } from "../../Modal";
