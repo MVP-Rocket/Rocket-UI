@@ -1,31 +1,11 @@
 import React, { useEffect } from "react";
 import colors from "tailwindcss/colors";
-import { DefaultColors } from "tailwindcss/types/generated/colors";
 import CheckMark from "./../../assets/icons/check-mark.svg";
-import { TailwindColorsType } from "../../global";
-import { Step, textDirectionsType } from "./types";
+import { StepperProps, textDirectionsType } from "./types";
 import { animatedType } from "./types";
 import { checkedType } from "./types";
 import { SizesType } from "./types";
 import { directions } from "./types";
-
-export interface StepperProps {
-  steps: Step[];
-  animated?: animatedType[keyof animatedType];
-  textColor?: TailwindColorsType;
-  disabledColor?: TailwindColorsType;
-  activeColor?: TailwindColorsType;
-  checked?: checkedType[keyof checkedType];
-  size?: SizesType[keyof SizesType][keyof SizesType[keyof SizesType]];
-  direction?: directions;
-  textDirection?:
-    | textDirectionsType["col"]["left" | "right"]
-    | textDirectionsType["row"]["top" | "bottom"];
-}
-
-export interface StepIndexProps {
-  $disabled: boolean;
-}
 
 export const textDirections: textDirectionsType = {
   col: { left: "left", right: "right" },

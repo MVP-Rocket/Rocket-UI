@@ -5,7 +5,15 @@ import {
   BsInfoCircleFill,
   BsXLg,
 } from "react-icons/bs";
-import { toast } from "./types/toast";
+import { toast } from "./types";
+import { positionsTypes } from "./types";
+
+export const positions: positionsTypes = {
+  topLeft: "top-4 left-0",
+  topRight: "top-4 right-0",
+  bottomLeft: "bottom-4 left-0",
+  bottomRight: "bottom-4 right-0",
+};
 
 export default function ToastCard({
   message,

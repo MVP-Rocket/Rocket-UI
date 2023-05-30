@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Transition from "../transition";
 import Modal from "../../Modal";
-import { timings } from "../types/timing";
+import { timings } from "../types";
 import { widths } from "../../Modal";
 
 export default function TransitionDemo() {

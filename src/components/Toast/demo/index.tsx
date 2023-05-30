@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import useToast from "../useToast";
-import { positions } from "../types/toastContainer";
 
 export default function ToastCardDemo() {
   const { newToast, ToastContainer } = useToast();

@@ -1,12 +1,8 @@
 import React from "react";
 
-import { directions } from "../components/Stepper/types";
+import { directions } from "../types";
 import colors from "tailwindcss/colors";
-import { Stepper, sizes, textDirections } from "../components/Stepper";
-
-export default {
-  component: Stepper,
-};
+import { Stepper, sizes, textDirections } from "./..";
 
 const datas = [
   {
@@ -27,7 +23,7 @@ const datas = [
   },
 ];
 
-export const StepperStoryChangeTest = () => {
+export default function StepperDemo() {
   const [steps, setSteps] = React.useState(datas);
 
   React.useEffect(() => {
@@ -68,4 +64,4 @@ export const StepperStoryChangeTest = () => {
       </div>
     </div>
   );
-};
+}
