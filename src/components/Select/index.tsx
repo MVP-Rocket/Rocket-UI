@@ -87,7 +87,12 @@ function Select({
   );
 }
 
-function Options({ children, hoverColor, props, disconnected }: selectOptions) {
+function Options({
+  children,
+  hoverColor,
+  props,
+  disconnected,
+}: React.PropsWithChildren<selectOptions>) {
   const { isOpen, setIsOpen, value, onChange, width } = props;
 
   const SelectPropsDiv = styled.div`

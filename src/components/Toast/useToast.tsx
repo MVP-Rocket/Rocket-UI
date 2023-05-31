@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "./types";
-import ToastCard, { positions } from "./toastCard";
+import ToastCard, { positions } from "./";
 import { options } from "./types";
 import { toastContainer } from "./types";
 

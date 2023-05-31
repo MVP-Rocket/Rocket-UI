@@ -1,14 +1,14 @@
 import { width } from "../../../global/types";
 
 export interface modal {
-  isOpen?: boolean;
+  isOpen: boolean;
   onClose?: any;
   noBackdrop?: boolean;
   backdropOpacity?: number;
 }
 
 export interface modalCard {
-  props?: any;
-  width?: width;
+  onClose?: () => void;
+  width?: width[keyof width];
   noPadding?: boolean;
 }

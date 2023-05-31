@@ -24,11 +24,11 @@ export default function Search({
   onChange,
   height = heights.md,
   width = widths.md,
-  placeholder,
-  iconRight,
+  placeholder = "Rechercher",
+  iconRight = false,
   iconBorder = true,
-  results,
-  onEndSearch,
+  results = [],
+  onEndSearch = () => {},
 }: search) {
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
@@ -65,7 +65,7 @@ export default function Search({
               !isSearching && (iconRight ? "rounded-l-lg" : "rounded-r-lg")
             } cursor-text pl-4 pb-0.5 z-10 outline outline-1 outline-gray-400 hover:outline-blue-600 
         focus:outline focus:outline-2 focus:outline-blue-600 placeholder:text-gray-400`}
-            placeholder={`${placeholder ?? "Rechercher"}`}
+            placeholder={placeholder}
           />
         </form>
         {isSearching && results && (

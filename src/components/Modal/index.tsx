@@ -15,8 +15,8 @@ function Modal({
   children,
   isOpen,
   onClose,
-  backdropOpacity,
-  noBackdrop,
+  backdropOpacity = 0.5,
+  noBackdrop = false,
 }: React.PropsWithChildren<modal>): any {
   const backdropStyle = {
     background: `rgba(0,0,0,${backdropOpacity ?? "0.1"})`,
@@ -38,9 +38,9 @@ function Modal({
 function Card({
   children,
   width = widths.lg,
-  noPadding,
-  props,
-}: React.PropsWithChildren<modalCard>): React.FC {
+  noPadding = false,
+  onClose = () => {},
+}: React.PropsWithChildren<modalCard>) {
   // Closing modal when clicking outside of it
   const modalCardRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -52,7 +52,7 @@ function Card({
 
   function handleClickOutside(e: any) {
     if (modalCardRef.current && !modalCardRef.current.contains(e.target)) {
-      props.onClose();
+      onClose();
     }
   }
 
@@ -68,19 +68,17 @@ function Card({
   );
 }
 
-function Title(props: React.PropsWithChildren): React.FC {
+function Title(props: React.PropsWithChildren) {
   return (
     <h1 className="text-xl text-gray-950 font-semibold">{props.children}</h1>
   );
 }
 
-function Text(props: React.PropsWithChildren): React.FC {
+function Text(props: React.PropsWithChildren) {
   return <p className="mt-3 text-gray-600">{props.children}</p>;
 }
 
-function CloseBtn(
-  props: React.PropsWithChildren<{ onClick: () => void }>
-): React.FC {
+function CloseBtn(props: React.PropsWithChildren<{ onClick: () => void }>) {
   return (
     <div className="w-full flex justify-end">
       <button
