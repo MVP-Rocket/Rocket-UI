@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Search from "../";
-import colors from "tailwindcss/colors";
 
 const data = [
   { id: 0, name: "Timéo" },
@@ -15,22 +14,18 @@ const data = [
 
 export default function SearchDemo() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [results, setResults] = useState([""]);
+  const [results, setResults] = useState([]);
 
   // Results demo
   useEffect(() => {
-    data.map((str) => {
+    let resultsArray = [];
+    data.map((el) => {
       searchValue
-        ? str.name.includes(searchValue) &&
-          !results.includes(str.name) &&
-          setResults([...results, str.name])
+        ? el.name.includes(searchValue) && resultsArray.push(el)
         : setResults([]);
     });
+    setResults(resultsArray);
   }, [searchValue]);
-
-  useEffect(() => {
-    console.log(results);
-  }, [results]);
 
   function handleSearch() {
     console.log("endSearch!");
@@ -47,7 +42,7 @@ export default function SearchDemo() {
         results={results}
         onEndSearch={handleSearch}
         clickOnResult={clickOnResult}
-        hoverColor={colors.blue["500"]}
+        maxResult={4}
       />
     </div>
   );

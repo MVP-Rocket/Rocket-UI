@@ -81,20 +81,21 @@ export default function Search({
           >
             {results.length > 0 ? (
               results.map((el: any, i: number) => {
-                return (
-                  <div
-                    key={i}
-                    onPointerOver={() => setHoverIndex(i)}
-                    style={{
-                      backgroundColor: hoverIndex === i && hoverColor,
-                      color: hoverIndex === i && "white",
-                    }}
-                    onClick={() => clickOnResult && clickOnResult(el.id ?? i)}
-                    className="p-2 hover:text-white hover:bg-gray-950"
-                  >
-                    {el.name ?? el}
-                  </div>
-                );
+                if (i < maxResult)
+                  return (
+                    <div
+                      key={i}
+                      onPointerOver={() => setHoverIndex(i)}
+                      style={{
+                        backgroundColor: hoverIndex === i && hoverColor,
+                        color: hoverIndex === i && "white",
+                      }}
+                      onClick={() => clickOnResult && clickOnResult(el.id ?? i)}
+                      className="p-2 pb-2.5 rounded-b-lg hover:text-white hover:bg-gray-950"
+                    >
+                      {el.name ?? el}
+                    </div>
+                  );
               })
             ) : (
               <div className="p-2">
