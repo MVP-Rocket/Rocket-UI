@@ -14,6 +14,7 @@ export default function useToast() {
       theme: options?.theme,
       duration: options?.duration ?? 3000,
       animation: options?.animation,
+      color: options?.color,
     };
     setToasts((toasts) => [...toasts, toastToAdd]);
   }
@@ -25,7 +26,7 @@ export default function useToast() {
       toasts.length > 0 && (
         <div className={`${position} absolute z-50 overflow-hidden`}>
           {toasts.map((toast: toast) => {
-            const { message, type, theme, animation, duration } = toast;
+            const { message, type, theme, animation, duration, color } = toast;
             return (
               <ToastCard
                 {...{
@@ -34,6 +35,7 @@ export default function useToast() {
                   theme,
                   animation,
                   duration,
+                  color,
                   position,
                 }}
               />
