@@ -7,9 +7,6 @@ dependencies:
   styled-components:
     specifier: ^5.3.11
     version: 5.3.11(react-dom@18.2.0)(react-is@18.1.0)(react@18.2.0)
-  tslib:
-    specifier: ^2.5.2
-    version: 2.5.2
 
 devDependencies:
   '@babel/preset-env':
@@ -108,6 +105,9 @@ devDependencies:
   tailwindcss:
     specifier: ^3.3.2
     version: 3.3.2
+  tslib:
+    specifier: ^2.5.2
+    version: 2.5.2
   webpack:
     specifier: ^5.83.1
     version: 5.83.1(esbuild@0.17.19)

@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Search from "../";
+import colors from "tailwindcss/colors";
 
-const data = ["Paul", "Anna", "Eléonore", "Thomas", "Théo"];
+const data = [
+  { id: 0, name: "Timéo" },
+  { id: 1, name: "Titouan" },
+  { id: 2, name: "Tamara" },
+  { id: 3, name: "Thomas" },
+  { id: 4, name: "Théo" },
+  { id: 5, name: "Thésée" },
+  { id: 6, name: "Tristan" },
+  { id: 7, name: "Tatiana" },
+];
 
 export default function SearchDemo() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -11,15 +21,23 @@ export default function SearchDemo() {
   useEffect(() => {
     data.map((str) => {
       searchValue
-        ? str.includes(searchValue) &&
-          !results.includes(str) &&
-          setResults([...results, str])
+        ? str.name.includes(searchValue) &&
+          !results.includes(str.name) &&
+          setResults([...results, str.name])
         : setResults([]);
     });
   }, [searchValue]);
 
+  useEffect(() => {
+    console.log(results);
+  }, [results]);
+
   function handleSearch() {
     console.log("endSearch!");
+  }
+
+  function clickOnResult(id: number) {
+    console.log("clicking on a result!", id);
   }
 
   return (
@@ -28,6 +46,8 @@ export default function SearchDemo() {
         onChange={setSearchValue}
         results={results}
         onEndSearch={handleSearch}
+        clickOnResult={clickOnResult}
+        hoverColor={colors.blue["500"]}
       />
     </div>
   );
