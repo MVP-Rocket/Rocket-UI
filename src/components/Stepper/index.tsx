@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import colors from "tailwindcss/colors";
 import CheckMark from "./../../assets/icons/check-mark.svg";
 import { StepperProps, textDirectionsType } from "./types";

@@ -1,8 +1,11 @@
+import { TailwindColorsType } from "../../../global";
+
 export interface options {
   type?: string;
   theme?: string;
   animation?: string;
   duration?: number;
+  color?: TailwindColorsType;
 }
 
 export interface toast {
@@ -11,6 +14,7 @@ export interface toast {
   theme?: string;
   animation?: string;
   duration?: number;
+  color?: TailwindColorsType;
   position?: string;
 }
 

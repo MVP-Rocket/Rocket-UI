@@ -15,18 +15,18 @@ function Modal({
   children,
   isOpen,
   onClose,
-  backdropOpacity = 0.5,
+  backdropOpacity = 0.2,
   noBackdrop = false,
 }: React.PropsWithChildren<modal>): any {
   const backdropStyle = {
-    background: `rgba(0,0,0,${backdropOpacity ?? "0.1"})`,
+    background: `rgba(0,0,0,${backdropOpacity})`,
   };
-  const props = { onClose };
+  const props = { isOpen, onClose };
 
   return (
     <div className={`${!isOpen && "invisible"} absolute h-screen w-screen`}>
       {!noBackdrop && (
-        <div className="fixed h-screen w-screen -z-10" style={backdropStyle} />
+        <div className="fixed h-screen w-screen " style={backdropStyle} />
       )}
       {Children.map(children, (child: any) => {
         return cloneElement(child, { props });
@@ -37,9 +37,10 @@ function Modal({
 
 function Card({
   children,
-  width = widths.lg,
+  width = widths.md,
   noPadding = false,
-  onClose = () => {},
+  noAnimation,
+  props,
 }: React.PropsWithChildren<modalCard>) {
   // Closing modal when clicking outside of it
   const modalCardRef = useRef<HTMLInputElement>(null);
@@ -52,15 +53,21 @@ function Card({
 
   function handleClickOutside(e: any) {
     if (modalCardRef.current && !modalCardRef.current.contains(e.target)) {
-      onClose();
+      props.onClose();
     }
   }
 
   return (
     <div
       ref={modalCardRef}
-      className={`${width} ${
-        !noPadding && "px-6 py-4"
+      className={`${width} ${!noPadding && "px-6 py-4"} ${
+        !noAnimation
+          ? props.isOpen
+            ? "visible scale-100 opacity-100"
+            : "invisible scale-50 opacity-0"
+          : ""
+      } ${
+        !noAnimation && "transition-all duration-300 ease-out"
       } absolute top-1/2 left-1/2 -translate-y-[50%] -translate-x-[50%] z-50 bg-white rounded-2xl shadow-lg max-w-[90vw]`}
     >
       {children}
@@ -68,22 +75,28 @@ function Card({
   );
 }
 
-function Title(props: React.PropsWithChildren) {
+function Title(props: React.PropsWithChildren<{ className?: string }>) {
   return (
-    <h1 className="text-xl text-gray-950 font-semibold">{props.children}</h1>
+    <h1 className={`${props.className} text-xl text-gray-950 font-semibold`}>
+      {props.children}
+    </h1>
   );
 }
 
-function Text(props: React.PropsWithChildren) {
-  return <p className="mt-3 text-gray-600">{props.children}</p>;
+function Text(props: React.PropsWithChildren<{ className?: string }>) {
+  return (
+    <p className={`${props.className} mt-3 text-gray-600`}>{props.children}</p>
+  );
 }
 
-function CloseBtn(props: React.PropsWithChildren<{ onClick: () => void }>) {
+function CloseBtn(
+  props: React.PropsWithChildren<{ onClick: () => void; className?: string }>
+) {
   return (
     <div className="w-full flex justify-end">
       <button
         onClick={() => props.onClick()}
-        className="cursor-pointer mt-3 p-2 bg-gray-950 text-white rounded-lg"
+        className={`${props.className} cursor-pointer mt-3 p-2 bg-gray-950 text-white rounded-lg`}
       >
         {props.children}
       </button>

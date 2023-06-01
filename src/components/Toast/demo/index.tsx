@@ -5,12 +5,17 @@ export default function ToastCardDemo() {
   const { newToast, ToastContainer } = useToast();
 
   useEffect(() => {
-    newToast("Contenu ajouté avec succès!");
-    newToast("Une erreur est survenue", {
+    newToast("Success toast");
+    newToast("Error toast", {
       type: "error",
       theme: "dark",
       animation: "zoom",
       duration: 3700,
+    });
+    newToast("Info toast", {
+      type: "info",
+      animation: "zoom",
+      duration: 4200,
     });
   }, []);
 

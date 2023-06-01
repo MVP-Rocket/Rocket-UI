@@ -8,8 +8,8 @@ import React, {
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { selectOptions } from "./types";
 import { select } from "./types";
-import styled from "styled-components";
 import { height, width } from "../../global/types";
+import colors from "tailwindcss/colors";
 
 export const heights: height = {
   xxl: "h-20",
@@ -38,6 +38,7 @@ function Select({
 }: React.PropsWithChildren<select>) {
   const selectRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   // Closing select when clicking outside of it
   useEffect(() => {
@@ -59,10 +60,12 @@ function Select({
     value,
     onChange,
     width,
+    hoverIndex,
+    setHoverIndex,
   };
 
   return (
-    <div ref={selectRef}>
+    <div ref={selectRef} onPointerOut={() => setHoverIndex(null)}>
       <div
         onClick={() => {
           setIsOpen((prev) => !prev);
@@ -89,18 +92,19 @@ function Select({
 
 function Options({
   children,
-  hoverColor,
   props,
   disconnected,
+  hoverColor = colors.gray["950"],
 }: React.PropsWithChildren<selectOptions>) {
-  const { isOpen, setIsOpen, value, onChange, width } = props;
-
-  const SelectPropsDiv = styled.div`
-    &:hover {
-      background-color: ${hoverColor ?? "#262626"};
-      color: white;
-    }
-  `;
+  const {
+    isOpen,
+    setIsOpen,
+    value,
+    onChange,
+    width,
+    hoverIndex,
+    setHoverIndex,
+  } = props;
 
   function handleClickOnOption(el: string) {
     setIsOpen(false);
@@ -110,13 +114,18 @@ function Options({
   const mappedOptions = children.map((option: any, i: number) => {
     if (option != value) {
       return (
-        <SelectPropsDiv
+        <div
+          onPointerOver={() => setHoverIndex(i)}
+          style={{
+            backgroundColor: hoverIndex === i && hoverColor,
+            color: hoverIndex === i && "white",
+          }}
           onClick={() => handleClickOnOption(option)}
           key={i}
           className="w-full py-2 px-3 cursor-pointer"
         >
           <p>{option}</p>
-        </SelectPropsDiv>
+        </div>
       );
     }
   });
