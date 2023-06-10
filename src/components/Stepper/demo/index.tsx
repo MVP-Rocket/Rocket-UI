@@ -1,8 +1,7 @@
 import React from "react";
-
-import { directions } from "../types";
+import Stepper from "./../";
 import colors from "tailwindcss/colors";
-import { Stepper, sizes, textDirections } from "./..";
+import { sizes, textDirections, directions } from "./..";
 
 const datas = [
   {

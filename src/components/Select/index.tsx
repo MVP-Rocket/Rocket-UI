@@ -6,8 +6,8 @@ import React, {
   useState,
 } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { selectOptions } from "./types";
-import { select } from "./types";
+import { selectOptions } from "./../../global/types";
+import { select } from "./../../global/types";
 import { height, width } from "../../global/types";
 import colors from "tailwindcss/colors";
 
@@ -92,8 +92,16 @@ function Select({
 
 function Options({
   children,
-  props,
-  disconnected,
+  props = {
+    isOpen: false,
+    setIsOpen: (val: boolean) => {},
+    value: "",
+    onChange: (el: string) => {},
+    width: "",
+    hoverIndex: null,
+    setHoverIndex: (i: number) => {},
+  },
+  disconnected = false,
   hoverColor = colors.gray["950"],
 }: React.PropsWithChildren<selectOptions>) {
   const {

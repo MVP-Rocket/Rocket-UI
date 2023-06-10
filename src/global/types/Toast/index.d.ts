@@ -1,4 +1,4 @@
-import { TailwindColorsType } from "../../../global";
+import { TailwindColorsType } from "../..";
 
 export interface options {
   type?: string;

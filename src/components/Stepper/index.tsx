@@ -1,11 +1,16 @@
 import React from "react";
 import colors from "tailwindcss/colors";
 import CheckMark from "./../../assets/icons/check-mark.svg";
-import { StepperProps, textDirectionsType } from "./types";
-import { animatedType } from "./types";
-import { checkedType } from "./types";
-import { SizesType } from "./types";
-import { directions } from "./types";
+import type { StepperProps, textDirectionsType } from "../../global/types";
+import type { animatedType } from "../../global/types";
+import type { checkedType } from "../../global/types";
+import type { SizesType } from "../../global/types";
+import SVGCheckMark from "./../../components/SVG/SVGCheckMark";
+
+export enum directions {
+  row, // flex-row
+  col, // flex-col
+}
 
 export const textDirections: textDirectionsType = {
   col: { left: "left", right: "right" },
@@ -32,7 +37,7 @@ export const sizes: SizesType = {
   xs: { row: "w-20", col: "h-20" },
 };
 
-export function Stepper({
+export default function Stepper({
   steps,
   activeColor = colors.amber[500],
   disabledColor = colors.amber[500],
@@ -50,7 +55,7 @@ export function Stepper({
       }`}
     >
       <div
-        className={`flex ${size} ${
+        className={`flex items-center ${size} ${
           direction === directions.row ? "flex-row" : "flex-col"
         }`}
       >
@@ -58,7 +63,7 @@ export function Stepper({
           <div
             className={`flex ${
               direction === directions.row ? "flex-row" : "flex-col"
-            } relative ${i !== 0 && "w-full h-full"}`}
+            } relative items-center ${i !== 0 && "w-full h-full"}`}
           >
             {i === 0 || (
               <div
@@ -108,15 +113,13 @@ export function Stepper({
                 } relative h-8 text-md rounded-full`}
               >
                 <div className="relative text-white font-semibold left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-                  <img
+                  <SVGCheckMark
                     className={`absolute ${
                       animated && "transition-all duration-300 delay-300"
                     } top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 ${
                       step.active && checked ? "opacity-100" : "opacity-0"
                     }`}
-                    width={16}
-                    src={CheckMark}
-                    alt="check-mark"
+                    width={"16px"}
                   />
                   <span
                     className={`absolute ${

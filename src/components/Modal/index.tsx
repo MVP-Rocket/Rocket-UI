@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, useEffect, useRef } from "react";
-import { modal } from "./types";
-import { modalCard } from "./types";
+import { modal } from "./../../global/types";
+import { modalCard } from "./../../global/types";
 import { width } from "./../../global/types";
 
 export const widths: width = {
@@ -39,8 +39,8 @@ function Card({
   children,
   width = widths.md,
   noPadding = false,
-  noAnimation,
-  props,
+  noAnimation = true,
+  props = { isOpen: false, onClose: () => {} },
 }: React.PropsWithChildren<modalCard>) {
   // Closing modal when clicking outside of it
   const modalCardRef = useRef<HTMLInputElement>(null);
