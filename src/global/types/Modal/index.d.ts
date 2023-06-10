@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { width } from "../../../global/types";
+import { width } from "./../../../global/types";
 
 export interface modal {
   isOpen: boolean;

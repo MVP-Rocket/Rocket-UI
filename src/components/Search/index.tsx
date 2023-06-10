@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { search } from "./types";
+import { search } from "./../../global/types";
 import { GrSearch } from "react-icons/gr";
 import { height } from "../../global/types";
 import { width } from "../../global/types";
-import searchIcon from "../../assets/icons/icons8-search.svg";
+import searchIcon from "../../assets/icons/icons-search.svg";
 import colors from "tailwindcss/colors";
+import SVGSearch from "./../../components/SVG/SVGSearch";
 
 export const heights: height = {
   xxl: "h-16",
@@ -23,7 +24,7 @@ export const widths: width = {
 };
 
 export default function Search({
-  onChange = () => {},
+  onChange = (e: any) => {},
   height = heights.md,
   width = widths.md,
   placeholder = "Rechercher",
@@ -33,7 +34,7 @@ export default function Search({
   results = [],
   maxResult = 6,
   onEndSearch = () => {},
-  clickOnResult = () => {},
+  clickOnResult = (id: number) => {},
 }: search) {
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -57,7 +58,7 @@ export default function Search({
             iconBorder ? "outline-gray-400" : "outline-gray-100"
           } px-2.5 pt-1.5 pb-2 flex items-center bg-gray-100 outline outline-1 rounded-l-lg cursor-pointer`}
         >
-          <img src={searchIcon} className="max-h-full" alt="search_icon" />
+          <SVGSearch className="max-h-full" />
         </div>
       )}
       <div className="relative">

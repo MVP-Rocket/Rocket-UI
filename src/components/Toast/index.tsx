@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { toast } from "./types";
-import { positionsTypes } from "./types";
-import successIcon from "../../assets/icons/checkmark-circle-svgrepo-com.svg";
-import errorIcon from "../../assets/icons/exclamation-mark-round-svgrepo-com.svg";
-import infoIcon from "../../assets/icons/info-svgrepo-com.svg";
-import crossmarkIcon from "../../assets/icons/cross-23.svg";
-import crossmarkDarkIcon from "../../assets/icons/cross-23-dark.svg";
+import { toast } from "../../global/types/Toast";
+import { positionsTypes } from "../../global/types/Toast";
+import SVGInfo from "./../../components/SVG/SVGInfo";
+import SVGError from "./../../components/SVG/SVGError";
+import SVGCrossMark from "./../../components/SVG/SVGCrossMark";
 
 export const positions: positionsTypes = {
   topLeft: "top-4 left-0",
@@ -16,7 +14,7 @@ export const positions: positionsTypes = {
 
 export default function ToastCard({
   message,
-  type,
+  type = "info",
   theme,
   animation,
   duration,
@@ -42,21 +40,10 @@ export default function ToastCard({
   // Default toast
   let borderColor = "border-green-500";
   let backgroundColor = "bg-white";
-  let icon = successIcon;
   let transitionStart = "translate-x-[110%] opacity-0";
   let transitionEnd = "translate-x-0 opacity-100";
   let justifying = "justify-end";
   let margin = "mr-4";
-
-  // Type
-  if (type === "error") {
-    borderColor = "border-red-500";
-    icon = errorIcon;
-  }
-  if (type === "info") {
-    borderColor = "border-blue-500";
-    icon = infoIcon;
-  }
 
   // Theme
   if (theme === "dark") backgroundColor = "bg-gray-800";
@@ -88,7 +75,12 @@ export default function ToastCard({
        min-w-[300px] min-h-[60px] w-fit h-fit rounded-md border-t-4 shadow-md mb-3 transition-all duration-[350ms] ease-out`}
       >
         <div className="flex min-h-[60px] items-center px-4 pb-0.5">
-          <img src={icon} alt="icon" className="h-[30px]" />
+          {type === "info" && (
+            <SVGInfo width="30px" className=" border-blue-500" />
+          )}
+          {type === "error" && (
+            <SVGError width="30px" className=" border-red-500" />
+          )}
           <p
             className={`${
               theme === "dark" && "text-white"
@@ -100,11 +92,11 @@ export default function ToastCard({
             onClick={() => setIsClosed(true)}
             className="absolute z-20 top-3 right-3 cursor-pointer"
           >
-            <img
-              src={theme === "dark" ? crossmarkDarkIcon : crossmarkIcon}
-              alt="icon"
-              className="h-4"
-            />
+            {theme === "dark" ? (
+              <SVGCrossMark className="fill-white" />
+            ) : (
+              <SVGCrossMark />
+            )}
           </div>
         </div>
       </div>

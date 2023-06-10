@@ -1,4 +1,5 @@
-import { TailwindColorsType } from "../../../global";
+import { directions } from "components/Stepper";
+import { TailwindColorsType } from "../..";
 
 export interface Step {
   name: string;
@@ -19,11 +20,6 @@ export type SizesType = {
   sm: DirectionsType;
   xs: DirectionsType;
 };
-
-export enum directions {
-  row, // flex-row
-  col, // flex-col
-}
 
 export type textDirectionsType = {
   col: { left: string; right: string };

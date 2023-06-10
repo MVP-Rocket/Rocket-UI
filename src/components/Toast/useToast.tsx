@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { toast } from "./types";
+import { toast } from "../../global/types/Toast";
 import ToastCard, { positions } from "./";
-import { options } from "./types";
-import { toastContainer } from "./types";
+import { options } from "../../global/types/Toast";
+import { toastContainer } from "../../global/types/Toast";
 
 export default function useToast() {
   const [toasts, setToasts] = useState<toast[]>([]);
